@@ -1,0 +1,96 @@
+body{
+	font-family: "Raleway";
+}
+
+.navbar{
+	padding: 0;
+	background-color: #262626 !important;
+}
+
+.nav-item{
+	margin: 0;
+	border-left: 1px solid grey;
+	border-bottom: 3px solid #262626;
+	transition: linear 0.2s;
+	font-size: 0.9em;
+	padding: 0 7px 0 7px;
+}
+
+.nav-item:hover{
+	border-bottom: 3px solid red;
+}
+
+.navbar-brand img{
+	height: 1.4em;
+	width: 2em;
+}
+
+.navbar-brand img:hover{
+	opacity: 0.5;
+}
+
+.btn-primary{
+	background-color: #dd3333;
+	border-color: #dd3333;
+	box-shadow: none;
+}
+
+.btn-primary:hover{
+	background-color: #ae1e1e;
+	border-color: #ae1e1e;
+}
+
+.btn-primary:active{
+	background-color: #841515 !important;
+	border-color: #841515 !important;
+	box-shadow: none !important;
+}
+
+.btn-primary:focus, .btn-outline-primary:focus{
+	box-shadow: none !important;
+}
+
+.btn-outline-primary{
+	color: #dd3333;
+	border-color: #dd3333;
+}
+
+.btn-outline-primary:hover{
+	border-color: #dd3333;
+	background-color: #dd3333;
+}
+
+.btn-outline-primary:active{
+	background-color: #841515 !important;
+	border-color: #841515 !important;
+	box-shadow: none !important;
+}
+
+.hr-primary{
+	background-color: red;
+	width: 50%;
+	margin-left: 0;
+}
+
+.hr-secondary{
+    background-color: black;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.nav-container{
+	height: 100%;
+}
+
+.posts{
+	height: 500px;
+}
+
+.link{
+    color: red;
+}
+
+.link:hover{
+    color: darkred;
+}
+
