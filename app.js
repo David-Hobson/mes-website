@@ -61,6 +61,16 @@ app.get("/posts/new", function(req, res){
     res.render("new");
 });
 
+app.get("/posts/:id", function(req, res){
+    Post.findById(req.params.id).exec(function(err, foundPost){
+        if(err){
+            console.log("Error when finding post: " + err);
+        }else{
+            res.render("show.ejs", {post: foundPost});
+        }
+    });
+});
+
 //ROUTE - POST POSTS - Creates a new post
 app.post("/posts", function(req, res){
     
