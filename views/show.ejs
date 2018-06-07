@@ -1,10 +1,20 @@
 <% include ./partials/header %>
 
-<h1><%= post.title %></h1>
-<img src="<%= post.image %>">
-<p><%= post.content %></p>
-<p><%= post.author %></p>
-<p><%= post.created %></p>
-<p><%= post.position %></p>
-
+<section class="container mt-4">
+	<div class="row justify-content-center">
+		<div class="col-lg-8">
+			<div class="card">
+				<img class="card-img-top" src="<%= post.image %>">
+				<div class="card-body">
+					<h1 class="card-title"><%= post.title %></h1>
+					<hr class="hr-primary">
+					<p><%= post.content %></p>
+					<p><%= post.author %></p>
+					<p><%= post.created %></p>
+					<p><%= post.position %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <% include ./partials/footer %>
