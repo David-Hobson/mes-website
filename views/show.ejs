@@ -12,6 +12,10 @@
 				<img class="card-img" src="<%= post.image %>">
 				<div class="card-body">
 					<p><%= post.content %></p>
+					<a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+					<form class="deleteForm" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    	<button class="btn btn-xs btn-danger">Delete</button>
+                	</form>
 				</div>
 			</div>
 		</div>

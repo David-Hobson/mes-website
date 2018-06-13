@@ -61,6 +61,7 @@ app.get("/posts/new", function(req, res){
     res.render("new");
 });
 
+//ROUTE - GET POST - Displays a detailed post
 app.get("/posts/:id", function(req, res){
     Post.findById(req.params.id).exec(function(err, foundPost){
         if(err){
@@ -69,6 +70,48 @@ app.get("/posts/:id", function(req, res){
             res.render("show.ejs", {post: foundPost});
         }
     });
+});
+
+//ROUTE - DELETE POST - Deletes a post
+app.delete("/posts/:id",function(req, res){
+    Post.findByIdAndRemove(req.params.id, function(err){
+       if(err){
+           res.redirect("/posts");
+       }else{
+           res.redirect("/posts");
+       }
+   }); 
+});
+
+//ROUTE - GET EDIT POST - Displays the edit post form
+app.get("/posts/:id/edit", function(req, res){
+    Post.findById(req.params.id, function(err, foundPost){
+           if(err){
+               res.redirect("/posts");
+           }else{
+                res.render("edit", {post: foundPost});    
+           } 
+    }); 
+});
+
+//ROUTE - PUT POST - Updates the currently edited post
+app.put("/posts/:id", function(req, res){
+    
+    var editedPost = {
+        title: req.body.title,
+        content: req.body.content,
+        author: req.body.author,
+        position: req.body.position,
+        image: "/uploads/" + req.files.image.name
+    };
+
+    Post.findByIdAndUpdate(req.params.id, editedPost, function(err, updatedPost){
+       if(err){
+           res.redirect("/posts");
+       }else{
+           res.redirect("/posts/" + req.params.id)
+       }
+   }); 
 });
 
 //ROUTE - POST POSTS - Creates a new post
