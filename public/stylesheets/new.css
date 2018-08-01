@@ -3,6 +3,7 @@ body{
     url("https://library.mcmaster.ca/sites/default/files/innis_silent_study.jpg");
     background-size: cover;
     background-position: center;
+    height: 100vh;
 }
 
 .new-post{
