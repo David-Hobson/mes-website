@@ -11,19 +11,19 @@
                     <hr class="hr-secondary"></hr>
                     <form action="/posts" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="title" placeholder="Title">
+                            <input type="text" class="form-control" name="title" placeholder="Title" required>
                         </div>              
                         <div class="form-group">
-                            <input type="text" class="form-control" name="author" placeholder="Author">
+                            <input type="text" class="form-control" name="author" placeholder="Author" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="position" placeholder="Position">
+                            <input type="text" class="form-control" name="position" placeholder="Position" required>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" name="content" placeholder="Content..."></textarea>
+                            <textarea class="form-control" rows="5" name="content" placeholder="Content..." required></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control-file" name="image">
+                            <input type="file" class="form-control-file" accept=".jpg, .png" name="image" required>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-md">Create Post</button>

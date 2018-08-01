@@ -102,8 +102,21 @@ app.put("/posts/:id", function(req, res){
         content: req.body.content,
         author: req.body.author,
         position: req.body.position,
-        image: "/uploads/" + req.files.image.name
     };
+
+    if(req.files.image != undefined){
+        let newImageName = "img-" + req.params.id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
+
+        //Move image to the uploads folder with new name which 'img' followed by the post id
+        req.files.image.mv("./public/uploads/" + newImageName, function(err){
+            if(err){
+                console.log("Failed to upload image: " + err);    
+            }
+        });
+        
+        //Update the newPost object with the new image name
+        editedPost.image = "/uploads/" + newImageName;
+    }
 
     Post.findByIdAndUpdate(req.params.id, editedPost, function(err, updatedPost){
        if(err){
@@ -116,14 +129,14 @@ app.put("/posts/:id", function(req, res){
 
 //ROUTE - POST POSTS - Creates a new post
 app.post("/posts", function(req, res){
-    
+
     //Create the new post object
     var newPost = {
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
         position: req.body.position,
-        image: "/uploads/" + req.files.image.name
+        image: ""
     };
     
     //Create the new post in the database
@@ -131,28 +144,19 @@ app.post("/posts", function(req, res){
         if(err){
             console.log("ERROR DURING POST CREATION: " + err);
             res.redirect("/posts");
-        }else{
-            console.log("Added a new post!");
+        }else{         
+            //Create new image name
+            let newImageName = "img-" + createdPost._id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
+
+            //Move image to the uploads folder with new name which 'img' followed by the post id
+            req.files.image.mv("./public/uploads/" + newImageName, function(err){
+                if(err){
+                    console.log("Failed to upload image: " + err);    
+                }
+            });
             
-            //Checks to see if image has been uploaded
-            if(req.files.image == undefined){
-                //If there is no image, use default image specified
-                newPost.image = "https://scontent.fykz1-1.fna.fbcdn.net/v/t31.0-8/12719090_10153940161648134_8548165327463917049_o.png?oh=d17b6829e1a43a272abe71de80b4eacb&oe=5AB901E3";
-            }else{
-                
-                //Get the file extension for the uploaded image
-                var imageExt = req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
-                
-                //Move image to the uploads folder with new name which 'img' followed by the post id
-                req.files.image.mv("./public/uploads/img" + createdPost._id + imageExt, function(err){
-                    if(err){
-                        console.log("Failed to upload image: " + err);    
-                    }
-                });
-                
-                //Update the newPost object with the new image name
-                newPost.image = "/uploads/img" + createdPost._id + imageExt;
-            }
+            //Update the newPost object with the new image name
+            newPost.image = "/uploads/" + newImageName;
             
             //Update the post in the database with the new name for the image
             Post.findByIdAndUpdate(createdPost._id, newPost, function(err, updatedPost){
@@ -162,7 +166,8 @@ app.post("/posts", function(req, res){
                     //console.log(updatedPost);
                 }
             });
-            
+
+            console.log("Added a new post!");
             res.redirect("/posts");
         }
     });

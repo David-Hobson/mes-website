@@ -46,7 +46,7 @@
                     <div class="card-img-overlay">
                         <h4 class="card-title"><%= posts[i].title %></h4>
                         <p class="card-text"><%= posts[i].content.substring(0,100) %>...</p>
-                        <p class="card-text">Last updated 3 mins ago</p>
+                        <p class="card-text"><%= posts[i].created.toDateString() %></p>
                     </div>
                 </div>
             </div>
