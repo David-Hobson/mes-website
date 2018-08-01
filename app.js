@@ -27,7 +27,7 @@ seedDB();
 
 //ROUTE - GET LANDING - Displays the landing page
 app.get("/", function(req, res){
-    Post.find({}, function(err, allPosts){
+    Post.find().sort({created: -1}).exec(function(err, allPosts){
         if(err){
             console.log(err);
             res.redirect("/");
@@ -47,7 +47,7 @@ app.get("/", function(req, res){
 
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
-    Post.find({}, function(err, allPosts){
+    Post.find().sort({created: -1}).exec(function(err, allPosts){
         if(err){
             res.redirect("/");
         }else{
