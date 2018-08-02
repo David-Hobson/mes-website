@@ -72,6 +72,12 @@ body{
 	margin-left: 0;
 }
 
+.hr-primary-mid{
+	background-color: red;
+	width: 50%;
+	margin: auto;
+}
+
 .hr-secondary{
     background-color: black;
     width: 50%;
