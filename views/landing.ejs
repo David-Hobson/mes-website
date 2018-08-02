@@ -44,9 +44,11 @@
         	    <div class="card bg-dark text-white">
                     <img class="card-img" src="<%= posts[i].image %>" alt="Card image">
                     <div class="card-img-overlay">
-                        <h4 class="card-title"><%= posts[i].title %></h4>
+                        <h3 class="card-title"><%= posts[i].title %></h3>
+                        <br>
                         <p class="card-text"><%= posts[i].content.substring(0,100) %>...</p>
-                        <p class="card-text">Last updated 3 mins ago</p>
+                        <p class="card-text"><em><%= posts[i].created.toDateString() %></em></p>
+                        <a class="link" href="/posts/<%= posts[i]._id %>">Read More...</a>
                     </div>
                 </div>
             </div>
