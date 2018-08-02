@@ -46,6 +46,11 @@ app.get("/", function(req, res){
     });
 });
 
+//ROUTE - GET ABOUT - Displays the about page
+app.get("/about", function(req, res){
+    res.render("about");
+});
+
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
     //Sorts posts from newest to oldest
