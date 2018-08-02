@@ -27,6 +27,7 @@ seedDB();
 
 //ROUTE - GET LANDING - Displays the landing page
 app.get("/", function(req, res){
+    //Sorts posts from newest to oldest and sends it to landing page
     Post.find().sort({created: -1}).exec(function(err, allPosts){
         if(err){
             console.log(err);
@@ -47,6 +48,7 @@ app.get("/", function(req, res){
 
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
+    //Sorts posts from newest to oldest
     Post.find().sort({created: -1}).exec(function(err, allPosts){
         if(err){
             res.redirect("/");
@@ -97,6 +99,7 @@ app.get("/posts/:id/edit", function(req, res){
 //ROUTE - PUT POST - Updates the currently edited post
 app.put("/posts/:id", function(req, res){
     
+    //Create the edited post object
     var editedPost = {
         title: req.body.title,
         content: req.body.content,
@@ -104,6 +107,7 @@ app.put("/posts/:id", function(req, res){
         position: req.body.position,
     };
 
+    //Checks if the edited post has a new image, keeps the default if not
     if(req.files.image != undefined){
         let newImageName = "img-" + req.params.id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
 
