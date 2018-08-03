@@ -51,6 +51,11 @@ app.get("/about", function(req, res){
     res.render("about");
 });
 
+//ROUTE - GET TRADITIONS - Displays the traditions page
+app.get("/traditions", function(req, res){
+    res.render("traditions");
+});
+
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
     //Sorts posts from newest to oldest
