@@ -1,15 +1,7 @@
-.description{
-	background-color: #b30000;
+.title-card{
 	background-image: url("http://macengsociety.ca/wp-content/uploads/2015/08/mes_logo_white.png");
-	background-size: 55em;
 	background-repeat: no-repeat;
 	background-position: 45em;
-	box-shadow: 0px 5px 20px #888888;
-}
-
-.title {
-	font-size: 70px;
-	text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);
 }
 
 .fill-img {
