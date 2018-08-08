@@ -59,11 +59,16 @@ app.get("/traditions", function(req, res){
 
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
+
     Council.find({}, function(err, allCouncil){
         if(err){
-            res.redirect("/");
+            console.log("Error loading executives...");
         }else{
-            res.render("council", {council: allCouncil});
+            let execResults = allCouncil.filter(member => member.rank == "EXEC");
+            let avpResults = allCouncil.filter(member => member.rank == "AVP");
+            let depResults = allCouncil.filter(member => member.rank == "DEP");
+            
+            res.render("council", {executives: execResults, avps: avpResults, deps: depResults});
         }
     });
 });
