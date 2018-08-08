@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var Post = require("./models/post");
 var Team = require("./models/team");
+var Council = require("./models/council");
 var seedDB = require("./seeds");
 
 
@@ -54,6 +55,17 @@ app.get("/about", function(req, res){
 //ROUTE - GET TRADITIONS - Displays the traditions page
 app.get("/traditions", function(req, res){
     res.render("traditions");
+});
+
+//ROUTE - GET COUNCIL - Displays the council page
+app.get("/council", function(req, res){
+    Council.find({}, function(err, allCouncil){
+        if(err){
+            res.redirect("/");
+        }else{
+            res.render("council", {council: allCouncil});
+        }
+    });
 });
 
 //ROUTE - GET POSTS - Displays all the posts
