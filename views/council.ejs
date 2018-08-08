@@ -1,0 +1,83 @@
+<% include ./partials/header %>
+
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/council.css">
+
+<div class="container-fluid about-container">
+    <div class="row text-white text-center title-card p-5">
+        <div class="col-12">
+            <h1 class="title">COUNCIL</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row executive p-5">
+        <div class="col-12">
+            <h1>EXECUTIVE</h1>
+            <hr class="hr-primary">
+        </div>
+        <% council.forEach(function(member){ %>
+        <div class="person col-xl-3 col-lg-3 col-md-6 p-3" councilid="<%= member._id %>">
+            <div class="">
+                <img class="card-img-top" src="<%= member.thumbnailImage %>">
+                <div class="pt-2">
+                    <h4><%= member.name %></h4>
+                    <p class="position"><%= member.position %></em></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="<%= member._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title"><%= member.name %></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <img class="modal-img" src="<%= member.fullImage %>">
+                        <p class="pt-2 text-muted"><em><%= member.program %></em></p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h4 class="modal-flavour"><em><%= member.flavourText %></em></h4>
+                        <hr>
+                        <p><%= member.bio %></p>
+                    </div>        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+
+
+    <div class="row avps p-5">
+        <div class="col-12">
+            <h1>ASSISTANT VICE PRESIDENTS</h1>
+            <hr class="hr-primary">
+        </div>
+    </div>
+
+    <div class="row departments p-5">
+        <div class="col-12">
+            <h1>DEPARTMENT REPRESENTATIVES</h1>
+            <hr class="hr-primary">
+        </div>
+    </div>
+
+</div>
+
+
+
+<% include ./partials/footer %>
+
+<script type="text/javascript">
+    $(".person").click(function(){
+        $("#" + this.getAttribute("councilid")).modal("toggle");
+    });
+</script>
