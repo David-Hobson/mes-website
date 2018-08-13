@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var Post = require("./models/post");
 var Team = require("./models/team");
+var Council = require("./models/council");
 var seedDB = require("./seeds");
 
 
@@ -42,6 +43,32 @@ app.get("/", function(req, res){
                 }
             })
             
+        }
+    });
+});
+
+//ROUTE - GET ABOUT - Displays the about page
+app.get("/about", function(req, res){
+    res.render("about");
+});
+
+//ROUTE - GET TRADITIONS - Displays the traditions page
+app.get("/traditions", function(req, res){
+    res.render("traditions");
+});
+
+//ROUTE - GET COUNCIL - Displays the council page
+app.get("/council", function(req, res){
+
+    Council.find({}, function(err, allCouncil){
+        if(err){
+            console.log("Error loading executives...");
+        }else{
+            let execResults = allCouncil.filter(member => member.rank == "EXEC");
+            let avpResults = allCouncil.filter(member => member.rank == "AVP");
+            let depResults = allCouncil.filter(member => member.rank == "DEP");
+            
+            res.render("council", {executives: execResults, avps: avpResults, deps: depResults});
         }
     });
 });
