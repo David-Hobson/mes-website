@@ -10,7 +10,6 @@ body{
 
 .nav-item{
 	margin: 0;
-	border-left: 1px solid grey;
 	border-bottom: 3px solid #262626;
 	transition: linear 0.2s;
 	font-size: 0.9em;
@@ -21,6 +20,11 @@ body{
 	border-bottom: 3px solid red;
 }
 
+.navbar-text {
+	font-size: 0.9em;
+	padding: 8px;
+}
+
 .navbar-brand img{
 	height: 1.4em;
 	width: 2em;
@@ -28,6 +32,10 @@ body{
 
 .navbar-brand img:hover{
 	opacity: 0.5;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
 
 .btn-primary{

@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/mac_eng_society");
 
 var teamSchema = new mongoose.Schema({
     name: String,

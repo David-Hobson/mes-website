@@ -6,19 +6,21 @@
 			<div class="card">
 				<div class="card-body">
 					<h1 class="card-title"><%= post.title %></h1>
-					<p class="card-subtitle text-muted">Posted by <%= post.author %> - <%= post.position %></p>
+					<p class="card-subtitle text-muted">Posted by <%= post.author.name %> - <%= post.author.position %></p>
 					<hr class="hr-primary">
 				</div>
 				<img class="card-img" src="<%= post.image %>">
 				<div class="card-body">
-					<p><%= post.content %></p>
+					<p style="white-space: pre-line;"><%= post.content %></p>
 					<hr>
-					<div>
-						<a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+					<% if(currentUser && post.author.id.equals(currentUser._id)){ %>
+					<div class="d-flex">
+						<a class="mr-2 btn btn-sm btn-outline-warning" href="/posts/<%= post._id %>/edit"><i class="far fa-edit"></i></a>
 						<form class="deleteForm" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-	                    	<button class="btn btn-xs btn-danger">Delete</button>
+	                    	<button class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></button>
 	                	</form>
-                	</div>
+	                </div>
+                	<% } %>
 				</div>
 			</div>
 		</div>

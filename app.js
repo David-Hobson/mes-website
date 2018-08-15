@@ -5,10 +5,16 @@ var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var passport = require("passport")
+var LocalStrategy = require("passport-local");
+var passportLocalMongoose = require("passport-local-mongoose");
+var expressSession = require("express-session");
 var Post = require("./models/post");
 var Team = require("./models/team");
 var Council = require("./models/council");
+var User = require("./models/user");
 var seedDB = require("./seeds");
+var secretPhrase = require("./secret");
 
 
 //Use statements for the express application
@@ -16,6 +22,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(fileUpload());
+app.use(expressSession({
+    secret: secretPhrase(),
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 
 //Set statements for the express application
 app.set("view engine", "ejs");
@@ -25,6 +43,16 @@ mongoose.connect("mongodb://localhost/mac_eng_society");
 
 //Seed the data base with sample data
 seedDB();
+
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+//Serialize the users
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+//=== ROUTES ===
 
 //ROUTE - GET LANDING - Displays the landing page
 app.get("/", function(req, res){
@@ -73,6 +101,62 @@ app.get("/council", function(req, res){
     });
 });
 
+//ROUTE - GET LOGIN - Displays the login page
+app.get("/login", function(req, res){
+    res.render("login");
+});
+
+//ROUTE - POST LOGIN - Logins the user in on success
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+}), function(req, res){
+   
+});
+
+//ROUTE - GET LOGOUT - Logs the user out
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("back");
+});
+
+//ROUTE - GET REGISTER - Displays the register page
+app.get("/register", function(req, res){
+    res.render("register");
+});
+
+//ROUTE - POST REGISTER - Register the user for login
+app.post("/register", function(req, res){
+    User.register(new User({username: req.body.username, name: req.body.name, position: req.body.position}), req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/");
+        });
+    });
+});
+
+//ROUTE - GET CHANGEPASSWORD - Displays the change password page
+app.get("/changepassword", isLoggedIn, function(req, res){
+    res.render("changepassword");
+});
+
+//ROUTE - POST CHANGEPASSWORD - Changes the users password
+app.post("/changepassword", isLoggedIn, function(req, res){
+    User.findByUsername(req.user.username, function(err, foundUser){
+        foundUser.changePassword(req.body.oldPassword, req.body.newPassword, function(err){
+            if(err){
+                console.log(err);
+            }else{
+                res.redirect("/");
+            }
+        });
+    });
+});
+
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
     //Sorts posts from newest to oldest
@@ -86,7 +170,7 @@ app.get("/posts", function(req, res){
 });
 
 //ROUTE - GET POSTS/NEW - Displays the new post form
-app.get("/posts/new", function(req, res){
+app.get("/posts/new", isLoggedIn, function(req, res){
     res.render("new");
 });
 
@@ -102,7 +186,7 @@ app.get("/posts/:id", function(req, res){
 });
 
 //ROUTE - DELETE POST - Deletes a post
-app.delete("/posts/:id",function(req, res){
+app.delete("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
     Post.findByIdAndRemove(req.params.id, function(err){
        if(err){
            res.redirect("/posts");
@@ -113,7 +197,7 @@ app.delete("/posts/:id",function(req, res){
 });
 
 //ROUTE - GET EDIT POST - Displays the edit post form
-app.get("/posts/:id/edit", function(req, res){
+app.get("/posts/:id/edit", isLoggedIn, checkPostOwnership, function(req, res){
     Post.findById(req.params.id, function(err, foundPost){
            if(err){
                res.redirect("/posts");
@@ -124,14 +208,19 @@ app.get("/posts/:id/edit", function(req, res){
 });
 
 //ROUTE - PUT POST - Updates the currently edited post
-app.put("/posts/:id", function(req, res){
+app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
     
+    var author = {
+        id: req.user._id,
+        name: req.user.name,
+        position: req.user.position
+    }
+
     //Create the edited post object
     var editedPost = {
         title: req.body.title,
         content: req.body.content,
-        author: req.body.author,
-        position: req.body.position,
+        author: author
     };
 
     //Checks if the edited post has a new image, keeps the default if not
@@ -159,14 +248,19 @@ app.put("/posts/:id", function(req, res){
 });
 
 //ROUTE - POST POSTS - Creates a new post
-app.post("/posts", function(req, res){
+app.post("/posts", isLoggedIn, function(req, res){
+
+    var author = {
+        id: req.user._id,
+        name: req.user.name,
+        position: req.user.position
+    }
 
     //Create the new post object
     var newPost = {
         title: req.body.title,
         content: req.body.content,
-        author: req.body.author,
-        position: req.body.position,
+        author: author,
         image: ""
     };
     
@@ -204,6 +298,33 @@ app.post("/posts", function(req, res){
     });
     
 });
+
+function isLoggedIn(req, res, next){
+
+    if(req.isAuthenticated()){
+        return next();
+    }
+
+    res.redirect("/login");
+}
+
+function checkPostOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Post.findById(req.params.id, function(err, foundPost){
+            if(err){
+                res.redirect("back");
+            }else{
+                if(foundPost.author.id.equals(req.user._id)){
+                    return next();
+                }else{
+                    res.redirect("back");
+                }
+            }
+        });
+    }else{
+        res.redirect("back");
+    }
+}
 
 //SERVER START
 app.listen(3000, function(){

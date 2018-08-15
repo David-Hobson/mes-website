@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/base.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
 	
@@ -54,6 +55,21 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">Contact Us</a>
 					</li>
+				</ul>
+
+				<ul class="navbar-nav">
+					<% if(!currentUser) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+					</li>
+					<% } else { %>
+					<span class="nav-item">
+						<a class="nav-link" href="/changepassword"><i class="fas fa-user-circle"></i> <%= currentUser.name %></a>
+					</span>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+					</li>
+					<% } %>
 				</ul>
 			</div>
 		</div>
