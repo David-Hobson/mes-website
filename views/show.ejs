@@ -15,13 +15,12 @@
 					<hr>
 					<% if(currentUser && post.author.id.equals(currentUser._id)){ %>
 					<div class="d-flex">
-						<a class="mr-2 btn btn-sm btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+						<a class="mr-2 btn btn-sm btn-outline-warning" href="/posts/<%= post._id %>/edit"><i class="far fa-edit"></i></a>
 						<form class="deleteForm" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-	                    	<button class="btn btn-sm btn-danger">Delete</button>
+	                    	<button class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></button>
 	                	</form>
 	                </div>
                 	<% } %>
-
 				</div>
 			</div>
 		</div>
