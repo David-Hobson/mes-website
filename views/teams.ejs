@@ -28,9 +28,9 @@
                             <p class="card-text"><%= team.flavourText %></p>
                             <p class="card-text" ><i style="color: red;" class="far fa-envelope"></i> <%= team.email %></p>
                             <div>
-                                <a href="#" class="card-text mr-1"><i class="fab fa-facebook-square fa-2x"></i></a>
-                                <a href="#" class="card-text mr-1"><i class="fab fa-twitter-square fa-2x"></i></a>
-                                <a href="#" class="card-text"><i class="fab fa-youtube-square fa-2x"></i></a>
+                                <% for(let i = 0; i < team.socialMedia.length; i++) { %>
+                                    <a href="<%= team.socialMedia[i][1] %>" class="card-text mr-1"><i class="fab fa-<%= team.socialMedia[i][0] %> fa-2x"></i></a>
+                                <% } %>
                             </div>
                             <br>
                             <a href="/teams/<%= team._id %>" class="card-text">View Team <i class="fas fa-angle-right"></i></a>
