@@ -101,11 +101,11 @@ body{
 	height: 500px;
 }
 
-.link{
+a{
     color: red;
 }
 
-.link:hover{
+a:hover{
     color: darkred;
 }
 
