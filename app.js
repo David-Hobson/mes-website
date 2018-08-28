@@ -310,7 +310,7 @@ app.get("/teams", function(req, res){
     });
 });
 
-//ROUTE - GET TEAMS - Displays the detailed team
+//ROUTE - GET TEAM - Displays the detailed team
 app.get("/teams/:id", function(req, res){
     Team.findById(req.params.id).exec(function(err, foundTeam){
         if(err){
@@ -320,6 +320,7 @@ app.get("/teams/:id", function(req, res){
         }
     });
 });
+
 
 function isLoggedIn(req, res, next){
 
