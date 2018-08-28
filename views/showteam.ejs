@@ -18,7 +18,7 @@
             <p><%= team.description %></p>
             <div>
                 <% for(let i = 0; i < team.socialMedia.length; i++) { %>
-                    <a href="<%= team.socialMedia[i][1] %>" class="card-text mr-1"><i class="fab fa-<%= team.socialMedia[i][0] %> fa-2x"></i></a>
+                    <a href="<%= team.socialMedia[i][1] %>" class="card-text mr-1"><i class="<%= team.socialMedia[i][0] %> fa-2x"></i></a>
                 <% } %>
             </div>
         </div>
