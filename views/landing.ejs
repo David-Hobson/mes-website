@@ -8,7 +8,7 @@
 		<h1 class="display-1" id="test">The McMaster<br>Engineering Society</h1>
 		<p class="lead">
 			<a class="btn btn-primary btn-lg" href="/posts">View Posts</a>
-			<a class="btn btn-outline-primary btn-lg">FAQ</a>
+			<a class="btn btn-outline-primary btn-lg text-white" href="/teams">Clubs &amp; Teams</a>
 		</p>
 	</div>
 </div>
@@ -47,23 +47,6 @@
         <div class="col-6">
         </div>
 	</div>
-	
-	<div class="row text-center meet-teams pt-5">
-        <div class="col">
-            <h1>CLUBS | TEAMS | SOCIETIES</h1>
-            <hr class="hr-secondary mb-5">
-            <div class="card-columns">
-                <% teams.forEach(function(team){ %>
-                    <div class="card text-white squared">
-                        <img class="card-img" src="<%= team.image %>" alt="Card image">
-                        <div class="card-img-overlay">
-                        <h1 class="card-title"><%= team.name %></h1>
-                        </div>
-                    </div>
-                <% }); %>
-            </div>
-        </div>
-    </div>
 </div>
 
 

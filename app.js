@@ -299,6 +299,29 @@ app.post("/posts", isLoggedIn, function(req, res){
     
 });
 
+//ROUTE - GET TEAMS - Displays all the teams
+app.get("/teams", function(req, res){
+    Team.find({}, function(err, foundTeams){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("teams", {teams: foundTeams})
+        }
+    });
+});
+
+//ROUTE - GET TEAM - Displays the detailed team
+app.get("/teams/:id", function(req, res){
+    Team.findById(req.params.id).exec(function(err, foundTeam){
+        if(err){
+            console.log("Error when finding post: " + err);
+        }else{
+            res.render("showteam", {team: foundTeam});
+        }
+    });
+});
+
+
 function isLoggedIn(req, res, next){
 
     if(req.isAuthenticated()){
