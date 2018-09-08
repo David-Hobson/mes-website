@@ -1,0 +1,143 @@
+<% include ./partials/header %>
+
+
+<script type="text/javascript" src="scripts/map.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/mescard.css">
+
+<div class="container-fluid traditions-container">
+    <div class="row text-white text-center title-card p-5">
+    	<div class="col-12">
+            <h1 class="title">MES CARD</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row card-info p-5">
+        <div class="col-xl-6 col-lg-8">
+            <h1>About</h1>
+            <hr class="hr-primary">
+            <p>The MESCard is a service offered by the McMaster Engineering Society that gets you discounts at local businesses. All you have to do is present your MESCard  and you’ll get a special engineering deal!</p>
+            <p>The MESCard also serves as a way for the MES and the Faculty to identify you as an MES Member. Be sure to have it on you so you can attend free engineering-specific events throughout the year!</p>
+        </div>
+        <div class="col-xl-6">
+            <img src="http://macengsociety.ca/wp-content/uploads/2015/08/MESCard.jpg">
+        </div>  
+    </div>
+
+    <div class="row">
+        <!--The div element for the map -->
+        <div id="map"></div>
+        <!-- Replace the value of the key parameter with your own API key. -->
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWSVKfigN-X9boBdllvMkdDoItqB9ArqE&callback=initMap">
+        </script>
+    </div>
+
+    <div class="row p-5">
+        <div class="col-12">
+            <h1>Places</h1>
+            <hr class="hr-primary">
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Pinks Burgers
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>10% off non-alcoholic purchases Saturday through to Tuesday.</strong></em></p>
+                    Pinks Burgers is a casual dining eatery located at 1335 Main St West, in beautiful Hamilton, Ontario. We strive to create an environment where absolute guest satisfaction is our highest priority and use only the best ingredients in our food.
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      West End Pub
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>10% off all regularly priced food items every day.</strong></em></p>
+                    Here at West End Pub, we like how quality tastes. That is why we try to use the highest quality ingredients in our food. We serve all the classic favorites that Canada has to offer. We are sure you will fall in love with us.
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Boston Pizza
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>10% off all food purchases Sunday through to Thursday.</strong></em></p>
+                    Boston Pizza is Canada’s No. 1 casual dining brand with more than 380 restaurants in Canada serving more than 100 unique and delicious menu items such as gourmet pizzas and pastas, juicy burgers and our famous BP wings. Annually, Boston Pizza serves more than 40 million guests, and in 2014 achieved system-wide sales that surpassed $1 billion. Boston Pizza has proudly been recognized as one of Canada’s 50 Best Managed Companies since 1994, achieving Platinum Member status since 2001.
+                  </div>
+                </div>
+              </div>
+
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      Lava Pizza
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>Free drinks and delivery with every order (Note: quantity of drinks ranges from 1-4 and is dependent on order size).</strong></em></p>
+                    Chain spot for specialty pizza including shawarma, wings & fried appetizers for takeout or delivery.
+                  </div>
+                </div>
+              </div>
+
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Mike's Campus Barber Shop
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>Free shampoo service with the purchase of a haircut.</strong></em></p>
+                    Come see why Campus Barber is the best, most friendly shop in Hamilton, Ontario!
+                  </div>
+                </div>
+              </div>
+
+            <div class="card">
+                <div class="card-header" id="headingSix">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Architect Hair Design
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p><em><strong>10% off a Men’s Haircut.</strong></em></p>
+                    Whether you need a cut, style, or full hot towel shave, our experienced barbers will take care of you. Come in, make yourself comfortable, and we hope you’ll enjoy our space!
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>
+
