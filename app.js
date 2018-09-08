@@ -85,6 +85,46 @@ app.get("/traditions", function(req, res){
     res.render("traditions");
 });
 
+//ROUTE - GET MESCARD - Displays the MES card page
+app.get("/mescard", function(req, res){
+    res.render("mescard");
+});
+
+//ROUTE - GET LIBRARY - Displays the textbook library page
+app.get("/library", function(req, res){
+    res.render("library");
+});
+
+//ROUTE - GET STUDENTSPACE - Displays the student space page
+app.get("/studentspace", function(req, res){
+    res.render("studentspace");
+});
+
+//ROUTE - GET PUBLICATIONS - Displays the publications page
+app.get("/publications", function(req, res){
+    res.render("publications");
+});
+
+//ROUTE - GET RENTALS - Displays the rentals page
+app.get("/rentals", function(req, res){
+    res.render("rentals");
+});
+
+//ROUTE - GET FUNDING - Displays the funding page
+app.get("/funding", function(req, res){
+    res.render("funding");
+});
+
+//ROUTE - GET MACLAB - Displays the MACLAB page
+app.get("/maclab", function(req, res){
+    res.render("maclab");
+});
+
+//ROUTE - GET ECCS - Displays the ECCS page
+app.get("/eccs", function(req, res){
+    res.render("eccs");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
