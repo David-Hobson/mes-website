@@ -14,7 +14,7 @@ var Team = require("./models/team");
 var Council = require("./models/council");
 var User = require("./models/user");
 //var seedDB = require("./seeds");
-var secretPhrase = require("./secret");
+//var secretPhrase = require("./secret");
 
 
 //Use statements for the express application
@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(fileUpload());
 app.use(expressSession({
-    secret: secretPhrase(),
+    secret: "This is a secret test phrase",
     resave: false,
     saveUninitialized: false
 }));
