@@ -13,7 +13,7 @@ var Post = require("./models/post");
 var Team = require("./models/team");
 var Council = require("./models/council");
 var User = require("./models/user");
-var seedDB = require("./seeds");
+//var seedDB = require("./seeds");
 var secretPhrase = require("./secret");
 
 
