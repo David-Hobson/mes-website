@@ -39,10 +39,10 @@ app.use(function(req, res, next){
 app.set("view engine", "ejs");
 
 //Mongodb connection
-mongoose.connect("mongodb://localhost/mac_eng_society");
+mongoose.connect("mongodb://mes-test-release:m3$-t3$t-1718@ds151382.mlab.com:51382/mac_eng_society");
 
 //Seed the data base with sample data
-seedDB();
+//seedDB();
 
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -395,6 +395,6 @@ function checkPostOwnership(req, res, next){
 }
 
 //SERVER START
-app.listen(3000, function(){
+app.listen(process.env.PORT, function(){
     console.log("McMaster Engineering Society Server has started...");
 });
