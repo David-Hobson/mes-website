@@ -125,6 +125,11 @@ app.get("/eccs", function(req, res){
     res.render("eccs");
 });
 
+//ROUTE - GET HATCHBOOKING - Displays the hatch booking page
+app.get("/hatchbooking", function(req, res){
+    res.render("hatchbooking");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
