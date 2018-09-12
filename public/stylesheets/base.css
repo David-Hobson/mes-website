@@ -5,11 +5,11 @@ body{
 .navbar{
 	padding: 0;
 	background-color: #262626 !important;
+	z-index: 40;
 }
 
 .nav-item{
 	margin: 0;
-	border-left: 1px solid grey;
 	border-bottom: 3px solid #262626;
 	transition: linear 0.2s;
 	font-size: 0.9em;
@@ -20,6 +20,11 @@ body{
 	border-bottom: 3px solid red;
 }
 
+.navbar-text {
+	font-size: 0.9em;
+	padding: 8px;
+}
+
 .navbar-brand img{
 	height: 1.4em;
 	width: 2em;
@@ -27,6 +32,10 @@ body{
 
 .navbar-brand img:hover{
 	opacity: 0.5;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
 
 .btn-primary{
@@ -72,6 +81,12 @@ body{
 	margin-left: 0;
 }
 
+.hr-primary-mid{
+	background-color: red;
+	width: 50%;
+	margin: auto;
+}
+
 .hr-secondary{
     background-color: black;
     width: 50%;
@@ -86,11 +101,31 @@ body{
 	height: 500px;
 }
 
-.link{
+a{
     color: red;
 }
 
-.link:hover{
+a:hover{
     color: darkred;
+}
+
+.btn-link {
+	color: red;
+}
+
+.btn-link:hover {
+	color: darkred;
+}
+
+.title-card{
+	background-color: #b30000;
+	box-shadow: 0px 5px 20px #888888;
+	z-index: 1;
+	position: relative;
+}
+
+.title {
+	font-size: 70px;
+	text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);
 }
 

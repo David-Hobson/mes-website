@@ -1,0 +1,65 @@
+<% include ./partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/teams.css">
+
+
+<div class="container-fluid">
+    <div class="row text-white text-center title-card p-5">
+        <div class="col-12">
+            <h1 class="title">TEAMS | CLUBS | COMMITTEES</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row pl-5 pt-5">
+        <div class="col-xl-12 text-center search-box">
+            <input id="search" type="text" name="" autocomplete="off" placeholder="Search...">
+            <i class="fas fa-search fa-2x search-logo"></i>
+        </div>
+    </div>
+    <div class="row meet-teams p-5">
+        <div class="col">
+            <div class="card-columns">
+                <% teams.forEach(function(team){ %>
+                    <div class="card text-white squared teamcard" tags="<%= team.tags %>">
+                        <img class="card-img" src="<%= team.mainImage %>" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h1 class="card-title text-center"><%= team.name %></h1>
+                            <p class="card-text"><%= team.flavourText %></p>
+                            <p class="card-text" ><i style="color: red;" class="far fa-envelope"></i> <%= team.email %></p>
+                            <div>
+                                <% for(let i = 0; i < team.socialMedia.length; i++) { %>
+                                    <a href="<%= team.socialMedia[i][1] %>" class="card-text mr-1"><i class="<%= team.socialMedia[i][0] %> fa-2x"></i></a>
+                                <% } %>
+                            </div>
+                            <br>
+                            <a href="/teams/<%= team._id %>" class="card-text">View Team <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>
+
+<script type="text/javascript">
+    let searching = $("#search");
+    searching.keyup(function(){
+        $("html").animate({ scrollTop: $("#search").offset().top - 30}, 0);
+        let teams = $(".teamcard");
+        teams.each(function(){
+            if(this.getAttribute("tags").toLowerCase().includes(searching[0].value.trim().toLowerCase())){
+                this.classList.remove("non-search");
+            }else {
+                this.classList.add("non-search");
+            }
+        });
+    });
+
+    $("#search").click(function () {
+        $("html").animate({ scrollTop: $("#search").offset().top - 30}, 300);
+        return true;
+    });
+</script>

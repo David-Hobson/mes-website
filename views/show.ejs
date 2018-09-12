@@ -1,0 +1,30 @@
+<% include ./partials/header %>
+
+<section class="container mt-4">
+	<div class="row justify-content-center">
+		<div class="col-lg-9">
+			<div class="card">
+				<div class="card-body">
+					<h1 class="card-title"><%= post.title %></h1>
+					<p class="card-subtitle text-muted">Posted by <%= post.author.name %> - <%= post.author.position %></p>
+					<hr class="hr-primary">
+				</div>
+				<img class="card-img" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/posts/<%= post.image %>">
+				<div class="card-body">
+					<p style="white-space: pre-line;"><%= post.content %></p>
+					<hr>
+					<% if(currentUser && post.author.id.equals(currentUser._id)){ %>
+					<div class="d-flex">
+						<a class="mr-2 btn btn-sm btn-outline-warning" href="/posts/<%= post._id %>/edit"><i class="far fa-edit"></i></a>
+						<form class="deleteForm" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+	                    	<button class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+	                	</form>
+	                </div>
+                	<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<% include ./partials/footer %>
