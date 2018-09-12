@@ -1,6 +1,6 @@
 body{
     background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), 
-    url("https://library.mcmaster.ca/sites/default/files/innis_silent_study.jpg");
+    url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/silent-study.jpg");
     background-size: cover;
     background-position: center;
     height: 100vh;
