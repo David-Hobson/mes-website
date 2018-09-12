@@ -1,5 +1,5 @@
 .title-card{
-	background-image: url("http://macengsociety.ca/wp-content/uploads/2015/08/mes_logo_white.png");
+	background-image: url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/mes-logo-white.png");
 	background-repeat: no-repeat;
 	background-position: 45em;
 }
@@ -11,7 +11,7 @@
 }
 
 .future {
-	background-image: url("http://macengsociety.ca/wp-content/uploads/2015/08/Eng-WW5-Cropped1.jpg");
+	background-image: url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/ww-canada-flag.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }

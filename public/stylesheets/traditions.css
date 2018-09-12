@@ -1,6 +1,6 @@
 .redsuits{
 	background: linear-gradient(90deg, rgba(255,255,255,1) 45%, rgba(255,255,255,0) 100%), 
-	url("http://macengsociety.ca/wp-content/uploads/2015/08/10479197_10152264188122212_2156260035745433043_o-1024x768.jpg");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/redsuits.jpg");
 	background-repeat: no-repeat;
 	background-position: right;
 	padding: 100px 0 100px 0;
@@ -8,14 +8,14 @@
 
 .titbird {
 	background: linear-gradient(rgba(179, 0, 0, 0.70), rgba(179, 0, 0, 0.70)), 
-	url("http://macengsociety.ca/wp-content/uploads/2015/08/uuJxgbWy.jpeg");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/titbird.jpg");
 	background-size: cover;
 	padding: 100px 0 100px 0;
 }
 
 .fireball {
 	background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), 
-	url("http://macengsociety.ca/wp-content/uploads/2015/08/Macfireball.png");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/fireball.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	padding: 100px 0 100px 0;
@@ -23,7 +23,7 @@
 
 .kipling {
 	background: linear-gradient(-90deg, rgba(0,0,0,1) 25%, rgba(255,255,255,0) 100%), 
-	url("https://www.taylorpetrick.com/images/portfolio/full/iron_ring.png");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/iron-ring.png");
 	background-repeat: no-repeat;
 	background-position: 110% 40%;
 	padding: 110px 0 110px 0;
@@ -52,7 +52,7 @@
 @media only screen and (max-width: 960px) {
     .kipling {
     	background: linear-gradient(-90deg, rgba(0,0,0,1) 45%, rgba(255,255,255,0) 100%), 
-    	url("https://www.taylorpetrick.com/images/portfolio/full/iron_ring.png");
+    	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/iron-ring.jpg");
         background-position: 60% 40%;
     }
 }

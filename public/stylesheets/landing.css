@@ -1,7 +1,7 @@
 .landing-title{
 	height: 45em;
 	background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), 
-	url("https://www.eng.mcmaster.ca/sites/default/files/uploads/hatchcentre.jpg");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/hatchcentre.jpg");
 	background-position: center;
 	background-size: cover;
 	color: white;
@@ -47,7 +47,7 @@
 
 .new-students{
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)), 
-	url("http://macengsociety.ca/wp-content/uploads/2015/08/14242244_10154470149073134_4002198242701622693_o.jpg");
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/mes-executive-tent.jpg");
 	background-position: 20% 35%;
 	height: 450px;
 	vertical-align: middle;

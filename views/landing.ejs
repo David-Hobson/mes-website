@@ -22,7 +22,7 @@
     	<% for(var i = 0; i < Math.min(3, posts.length); i++){ %>
     	    <div class="col-xl-4 col-lg-4 col-md-6">
         	    <div class="card bg-dark text-white">
-                    <img class="card-img" src="<%= posts[i].image %>" alt="Card image">
+                    <img class="card-img" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/posts/<%= posts[i].image %>" alt="Card image">
                     <div class="card-img-overlay">
                         <h3 class="card-title"><%= posts[i].title %></h3>
                         <br>
