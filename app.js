@@ -9,13 +9,13 @@ var passport = require("passport")
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var expressSession = require("express-session");
+var aws = require('aws-sdk');
 var Post = require("./models/post");
 var Team = require("./models/team");
 var Council = require("./models/council");
 var User = require("./models/user");
 var seedDB = require("./seeds");
-var secretPhrase = require("./secret");
-
+var secret = require("./secret");
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(fileUpload());
 app.use(expressSession({
-    secret: secretPhrase(),
+    secret: secret("secret-phrase"),
     resave: false,
     saveUninitialized: false
 }));
@@ -51,6 +51,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+aws.config.region = "us-east-2";
+aws.config.update({
+    accessKeyId: secret("aws-key"),
+    secretAccessKey: secret("aws-secret-key")
+});
 
 //=== ROUTES ===
 
@@ -166,7 +171,7 @@ app.get("/logout", function(req, res){
 });
 
 //ROUTE - GET REGISTER - Displays the register page
-app.get("/register", function(req, res){
+app.get("/register", checkAdmin, function(req, res){
     res.render("register");
 });
 
@@ -232,11 +237,33 @@ app.get("/posts/:id", function(req, res){
 
 //ROUTE - DELETE POST - Deletes a post
 app.delete("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
-    Post.findByIdAndRemove(req.params.id, function(err){
-       if(err){
-           res.redirect("/posts");
-       }else{
-           res.redirect("/posts");
+    Post.findByIdAndRemove(req.params.id, function(err, deletedPost){
+        if(err){
+            res.redirect("/posts");
+        }else{
+            const s3 = new aws.S3();
+            const s3Params = {
+                Bucket: "mes-website-assets/images/posts",
+                Key: deletedPost.image
+            };
+
+            s3.deleteObject(s3Params, (err, data) => {
+                if(err){
+                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                    console.log(err);
+                    return res.end();
+                }
+
+                const returnData = {
+                    signedRequest: data,
+                    url: `https://mes-website-assets.s3.amazonaws.com/${deletedPost.image}`
+                };
+
+                // res.write(JSON.stringify(returnData), function(err){
+                //     return res.end();
+                // });
+            });
+            res.redirect("/posts");
        }
    }); 
 });
@@ -270,17 +297,36 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
 
     //Checks if the edited post has a new image, keeps the default if not
     if(req.files.image != undefined){
+
         let newImageName = "img-" + req.params.id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
 
-        //Move image to the uploads folder with new name which 'img' followed by the post id
-        req.files.image.mv("./public/uploads/" + newImageName, function(err){
+        const s3 = new aws.S3();
+        const s3Params = {
+            Bucket: "mes-website-assets/images/posts",
+            Key: newImageName,
+            ACL: 'public-read',
+            Body: req.files.image.data
+        };
+
+        s3.putObject(s3Params, (err, data) => {
             if(err){
-                console.log("Failed to upload image: " + err);    
+                console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                console.log(err);
+                return res.end();
             }
+
+            const returnData = {
+                signedRequest: data,
+                url: `https://mes-website-assets.s3.amazonaws.com/${newImageName}`
+            };
+
+            // res.write(JSON.stringify(returnData), function(err){
+            //     return res.end();
+            // });
         });
-        
+
         //Update the newPost object with the new image name
-        editedPost.image = "/uploads/" + newImageName;
+        editedPost.image = newImageName;
     }
 
     Post.findByIdAndUpdate(req.params.id, editedPost, function(err, updatedPost){
@@ -317,17 +363,34 @@ app.post("/posts", isLoggedIn, function(req, res){
         }else{         
             //Create new image name
             let newImageName = "img-" + createdPost._id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
+            const s3 = new aws.S3();
+                const s3Params = {
+                Bucket: "mes-website-assets/images/posts",
+                Key: newImageName,
+                Expires: 60,
+                ACL: 'public-read',
+                Body: req.files.image.data
+            };
 
-            //Move image to the uploads folder with new name which 'img' followed by the post id
-            req.files.image.mv("./public/uploads/" + newImageName, function(err){
+            s3.putObject(s3Params, (err, data) => {
                 if(err){
-                    console.log("Failed to upload image: " + err);    
+                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                    console.log(err);
+                    return res.end();
                 }
+
+                const returnData = {
+                    signedRequest: data,
+                    url: `https://mes-website-assets.s3.amazonaws.com/${newImageName}`
+                };
+
+                // res.write(JSON.stringify(returnData), function(err){
+                //     return res.end();
+                // });
             });
-            
-            //Update the newPost object with the new image name
-            newPost.image = "/uploads/" + newImageName;
-            
+
+            newPost.image = newImageName;
+
             //Update the post in the database with the new name for the image
             Post.findByIdAndUpdate(createdPost._id, newPost, function(err, updatedPost){
                 if(err){
@@ -389,6 +452,18 @@ function checkPostOwnership(req, res, next){
                 }
             }
         });
+    }else{
+        res.redirect("back");
+    }
+}
+
+function checkAdmin(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.username == "communications@macengsociety.ca"){
+            return next();
+        }else{
+            res.redirect("back");
+        }
     }else{
         res.redirect("back");
     }
