@@ -135,6 +135,11 @@ app.get("/hatchbooking", function(req, res){
     res.render("hatchbooking");
 });
 
+//ROUTE - GET CONTACT - Displays the contacts page
+app.get("/contact", function(req, res){
+    res.render("contact");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
