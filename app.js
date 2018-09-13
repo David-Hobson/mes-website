@@ -140,6 +140,11 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
+//ROUTE - GET CONTACT - Displays the finances page
+app.get("/finances", function(req, res){
+    res.render("finances");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
