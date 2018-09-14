@@ -487,6 +487,6 @@ function checkAdmin(req, res, next){
 }
 
 //SERVER START
-app.listen(process.env.PORT, function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log("McMaster Engineering Society Server has started...");
 });
