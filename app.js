@@ -140,6 +140,21 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
+//ROUTE - GET CONTACT - Displays the finances page
+app.get("/finances", function(req, res){
+    res.render("finances");
+});
+
+//ROUTE - GET GOVERNINGDOCS - Displays the governing documents page
+app.get("/governingdocs", function(req, res){
+    res.render("governingdocs");
+});
+
+//ROUTE - GET SRA - Displays the SRA engineering page
+app.get("/sra", function(req, res){
+    res.render("sra");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
