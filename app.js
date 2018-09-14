@@ -14,8 +14,6 @@ var Post = require("./models/post");
 var Team = require("./models/team");
 var Council = require("./models/council");
 var User = require("./models/user");
-var seedDB = require("./seeds");
-var secret = require("./secret");
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,7 +21,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(fileUpload());
 app.use(expressSession({
-    secret: secret("secret-phrase"),
+    secret: process.env.SECRET_PHRASE,
     resave: false,
     saveUninitialized: false
 }));
@@ -39,10 +37,7 @@ app.use(function(req, res, next){
 app.set("view engine", "ejs");
 
 //Mongodb connection
-mongoose.connect("mongodb://localhost/mac_eng_society");
-
-//Seed the data base with sample data
-seedDB();
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds151382.mlab.com:51382/mac_eng_society`);
 
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -53,9 +48,11 @@ passport.deserializeUser(User.deserializeUser());
 
 aws.config.region = "us-east-2";
 aws.config.update({
-    accessKeyId: secret("aws-key"),
-    secretAccessKey: secret("aws-secret-key")
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID
 });
+
+const S3_BUCKET = process.env.S3_BUCKET
 
 //=== ROUTES ===
 
@@ -263,7 +260,7 @@ app.delete("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
         }else{
             const s3 = new aws.S3();
             const s3Params = {
-                Bucket: "mes-website-assets/images/posts",
+                Bucket: S3_BUCKET + "/images/posts",
                 Key: deletedPost.image
             };
 
@@ -322,7 +319,7 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
 
         const s3 = new aws.S3();
         const s3Params = {
-            Bucket: "mes-website-assets/images/posts",
+            Bucket: S3_BUCKET + "/images/posts",
             Key: newImageName,
             ACL: 'public-read',
             Body: req.files.image.data
@@ -385,7 +382,7 @@ app.post("/posts", isLoggedIn, function(req, res){
             let newImageName = "img-" + createdPost._id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
             const s3 = new aws.S3();
                 const s3Params = {
-                Bucket: "mes-website-assets/images/posts",
+                Bucket: S3_BUCKET + "/images/posts",
                 Key: newImageName,
                 Expires: 60,
                 ACL: 'public-read',
