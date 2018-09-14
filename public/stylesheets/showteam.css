@@ -10,3 +10,7 @@ p {
 .image-carousel {
 	background-color: #b30000;
 }
+
+.carousel-item {
+	object-fit: contain;
+}
