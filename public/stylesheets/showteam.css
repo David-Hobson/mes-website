@@ -11,7 +11,7 @@ p {
 	background-color: #b30000;
 }
 
-.carousel-item {
-	height: 50%;
-	object-fit: contain;
+.carousel {
+	width: 70%;
+	margin: auto;
 }
