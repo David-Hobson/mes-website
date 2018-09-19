@@ -1,13 +1,28 @@
 .landing-title{
 	height: 45em;
 	background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), 
-	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/hatchcentre.jpg");
+	url("https://www.eng.mcmaster.ca/sites/default/files/uploads/hatchcentre.jpg");
 	background-position: center;
 	background-size: cover;
 	color: white;
 	text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);
 	margin-bottom: 0;
 }
+
+/*.fade-in{*/
+/*	animation: fadein 2s;*/
+/*}*/
+
+/*@keyframes fadein{*/
+/*	from { */
+/*		opacity: 0; */
+/*		margin-top: 200px;*/
+/*	}*/
+/*    to { */
+/*   		opacity: 1;*/
+/*   		margin-top: 0;*/
+/*   	}*/
+/*}*/
 
 .nav-container{
 	height: 100%;
@@ -47,13 +62,17 @@
 
 .new-students{
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)), 
-	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/mes-executive-tent.jpg");
+	url("http://macengsociety.ca/wp-content/uploads/2015/08/14242244_10154470149073134_4002198242701622693_o.jpg");
 	background-position: 20% 35%;
 	height: 450px;
 	vertical-align: middle;
 }
 
-.latest-posts {
-	padding: 50px 0 50px 0;
+.description{
+	background-color: #b30000;
+	height: 30em;
+	padding-top: 3%;
+	background-image: url("http://macengsociety.ca/wp-content/uploads/2015/08/mes_logo_white.png");
+	background-position: -15em;
+	background-repeat: no-repeat;
 }
-

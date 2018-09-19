@@ -5,21 +5,22 @@ var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var passport = require("passport")
-var LocalStrategy = require("passport-local");
-var passportLocalMongoose = require("passport-local-mongoose");
-var expressSession = require("express-session");
-var aws = require('aws-sdk');
 var Post = require("./models/post");
 var Team = require("./models/team");
+<<<<<<< HEAD
 var Council = require("./models/council");
 var User = require("./models/user");
+=======
+var seedDB = require("./seeds");
+
+>>>>>>> master
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(fileUpload());
+<<<<<<< HEAD
 app.use(expressSession({
     secret: process.env.SECRET_PHRASE,
     resave: false,
@@ -32,6 +33,8 @@ app.use(function(req, res, next){
     next();
 });
 
+=======
+>>>>>>> master
 
 //Set statements for the express application
 app.set("view engine", "ejs");
@@ -39,6 +42,7 @@ app.set("view engine", "ejs");
 //Mongodb connection
 mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds151382.mlab.com:51382/mac_eng_society`);
 
+<<<<<<< HEAD
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -56,10 +60,11 @@ const S3_BUCKET = process.env.S3_BUCKET
 
 //=== ROUTES ===
 
+=======
+>>>>>>> master
 //ROUTE - GET LANDING - Displays the landing page
 app.get("/", function(req, res){
-    //Sorts posts from newest to oldest and sends it to landing page
-    Post.find().sort({created: -1}).exec(function(err, allPosts){
+    Post.find({}, function(err, allPosts){
         if(err){
             console.log(err);
             res.redirect("/");
@@ -77,6 +82,7 @@ app.get("/", function(req, res){
     });
 });
 
+<<<<<<< HEAD
 //ROUTE - GET ABOUT - Displays the about page
 app.get("/about", function(req, res){
     res.render("about");
@@ -224,10 +230,11 @@ app.post("/changepassword", isLoggedIn, function(req, res){
     });
 });
 
+=======
+>>>>>>> master
 //ROUTE - GET POSTS - Displays all the posts
 app.get("/posts", function(req, res){
-    //Sorts posts from newest to oldest
-    Post.find().sort({created: -1}).exec(function(err, allPosts){
+    Post.find({}, function(err, allPosts){
         if(err){
             res.redirect("/");
         }else{
@@ -237,10 +244,11 @@ app.get("/posts", function(req, res){
 });
 
 //ROUTE - GET POSTS/NEW - Displays the new post form
-app.get("/posts/new", isLoggedIn, function(req, res){
+app.get("/posts/new", function(req, res){
     res.render("new");
 });
 
+<<<<<<< HEAD
 //ROUTE - GET POST - Displays a detailed post
 app.get("/posts/:id", function(req, res){
     Post.findById(req.params.id).exec(function(err, foundPost){
@@ -355,21 +363,18 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
    }); 
 });
 
+=======
+>>>>>>> master
 //ROUTE - POST POSTS - Creates a new post
-app.post("/posts", isLoggedIn, function(req, res){
-
-    var author = {
-        id: req.user._id,
-        name: req.user.name,
-        position: req.user.position
-    }
-
+app.post("/posts", function(req, res){
+    
     //Create the new post object
     var newPost = {
         title: req.body.title,
         content: req.body.content,
-        author: author,
-        image: ""
+        author: req.body.author,
+        position: req.body.position,
+        image: "/uploads/" + req.files.image.name
     };
     
     //Create the new post in the database
@@ -377,6 +382,7 @@ app.post("/posts", isLoggedIn, function(req, res){
         if(err){
             console.log("ERROR DURING POST CREATION: " + err);
             res.redirect("/posts");
+<<<<<<< HEAD
         }else{         
             //Create new image name
             let newImageName = "img-" + createdPost._id + req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
@@ -408,6 +414,31 @@ app.post("/posts", isLoggedIn, function(req, res){
 
             newPost.image = newImageName;
 
+=======
+        }else{
+            console.log("Added a new post!");
+            
+            //Checks to see if image has been uploaded
+            if(req.files.image == undefined){
+                //If there is no image, use default image specified
+                newPost.image = "https://scontent.fykz1-1.fna.fbcdn.net/v/t31.0-8/12719090_10153940161648134_8548165327463917049_o.png?oh=d17b6829e1a43a272abe71de80b4eacb&oe=5AB901E3";
+            }else{
+                
+                //Get the file extension for the uploaded image
+                var imageExt = req.files.image.name.substring(req.files.image.name.lastIndexOf("."));
+                
+                //Move image to the uploads folder with new name which 'img' followed by the post id
+                req.files.image.mv("./public/uploads/img" + createdPost._id + imageExt, function(err){
+                    if(err){
+                        console.log("Failed to upload image: " + err);    
+                    }
+                });
+                
+                //Update the newPost object with the new image name
+                newPost.image = "/uploads/img" + createdPost._id + imageExt;
+            }
+            
+>>>>>>> master
             //Update the post in the database with the new name for the image
             Post.findByIdAndUpdate(createdPost._id, newPost, function(err, updatedPost){
                 if(err){
@@ -416,75 +447,12 @@ app.post("/posts", isLoggedIn, function(req, res){
                     //console.log(updatedPost);
                 }
             });
-
-            console.log("Added a new post!");
+            
             res.redirect("/posts");
         }
     });
     
 });
-
-//ROUTE - GET TEAMS - Displays all the teams
-app.get("/teams", function(req, res){
-    Team.find({}, function(err, foundTeams){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("teams", {teams: foundTeams})
-        }
-    });
-});
-
-//ROUTE - GET TEAM - Displays the detailed team
-app.get("/teams/:id", function(req, res){
-    Team.findById(req.params.id).exec(function(err, foundTeam){
-        if(err){
-            console.log("Error when finding post: " + err);
-        }else{
-            res.render("showteam", {team: foundTeam});
-        }
-    });
-});
-
-
-function isLoggedIn(req, res, next){
-
-    if(req.isAuthenticated()){
-        return next();
-    }
-
-    res.redirect("/login");
-}
-
-function checkPostOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Post.findById(req.params.id, function(err, foundPost){
-            if(err){
-                res.redirect("back");
-            }else{
-                if(foundPost.author.id.equals(req.user._id)){
-                    return next();
-                }else{
-                    res.redirect("back");
-                }
-            }
-        });
-    }else{
-        res.redirect("back");
-    }
-}
-
-function checkAdmin(req, res, next){
-    if(req.isAuthenticated()){
-        if(req.user.username == "communications@macengsociety.ca"){
-            return next();
-        }else{
-            res.redirect("back");
-        }
-    }else{
-        res.redirect("back");
-    }
-}
 
 //SERVER START
 app.listen(process.env.PORT, function(){
