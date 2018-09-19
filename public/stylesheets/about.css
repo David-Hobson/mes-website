@@ -1,0 +1,17 @@
+.title-card{
+	background-image: url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/mes-logo-white.png");
+	background-repeat: no-repeat;
+	background-position: 45em;
+}
+
+.fill-img {
+	height: 100%;
+	width: 100%;
+	border: 10px solid lightgray;
+}
+
+.future {
+	background-image: url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/ww-canada-flag.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
