@@ -6,25 +6,28 @@
 	<h1 class="display-1" id="test">The Post Board</h1>
 </div>
 
+<<<<<<< HEAD
 <div class="container pb-5">
     <% if(currentUser) { %>
+=======
+<div class="container">
+>>>>>>> master
     <div class="row post-controls justify-content-right">
         <div class="col-6">
             <a class="btn btn-outline-primary btn-xs" href="/posts/new">Add New Post</a>
         </div>
     </div>
-    <% } %>
     <div class="row">
         <% posts.forEach(function(post){ %>
             <div class="col-lg-4 col-md-6 col-sm-12 per-post">
                 <div class="card">
-                  <img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/posts/<%= post.image %>" alt="Card image cap">
+                  <img class="card-img-top" src="<%= post.image %>" alt="Card image cap">
                   <div class="card-body">
                     <h3 class="card-title"><%= post.title %></h3>
                     <hr class="hr-primary">
-                    <p><strong><%= post.author.name %> - <%= post.author.position %></strong></p>
+                    <p><strong><%= post.author %> - <%= post.position %></strong></p>
                     <p class="card-text"><%= post.content.substring(0,100) %>...</p>
-                    <a href="/posts/<%= post._id %>" class="link">Read More...</a>
+                    <a href="#" class="link">Read More...</a>
                   </div>
                   <div class="card-footer text-muted"><em><%= post.created.toDateString() %></em></div>
                 </div>
