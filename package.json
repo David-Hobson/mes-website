@@ -4,6 +4,7 @@
   "description": "Home and website/web application for the McMaster Engineering Society.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Hobson",
