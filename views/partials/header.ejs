@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/base.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
 	
@@ -21,17 +22,19 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#">About</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">Students</a>
-					</li>
+					<li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          About
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="/about">Our Story</a>
+				          <a class="dropdown-item" href="/traditions">Traditions</a>
+				          <a class="dropdown-item" href="/council">Council</a>
+				        </div>
+			      	</li>
 
 					<li class="nav-item dropdown">
 				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
 				          Services & Productions
 				        </a>
 				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -63,25 +66,24 @@
 						<a class="nav-link" href="/teams">Clubs &amp; Teams</a>
 					</li>
 
-=======
-				          Administration
-				        </a>
-				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				          <a class="dropdown-item" href="#">Action</a>
-				          <a class="dropdown-item" href="#">Another action</a>
-				          <div class="dropdown-divider"></div>
-				          <a class="dropdown-item" href="#">Something else here</a>
-				        </div>
-			      	</li>
-
->>>>>>> master
 					<li class="nav-item">
-						<a class="nav-link" href="#">Services</a>
+						<a class="nav-link" href="/contact">Contact Us</a>
 					</li>
+				</ul>
 
+				<ul class="navbar-nav">
+					<% if(!currentUser) { %>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Contact Us</a>
+						<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
 					</li>
+					<% } else { %>
+					<span class="nav-item">
+						<a class="nav-link" href="/changepassword"><i class="fas fa-user-circle"></i> <%= currentUser.name %></a>
+					</span>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+					</li>
+					<% } %>
 				</ul>
 			</div>
 		</div>
