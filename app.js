@@ -37,7 +37,9 @@ app.use(function(req, res, next){
 app.set("view engine", "ejs");
 
 //Mongodb connection
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds151382.mlab.com:51382/mac_eng_society`);
+mongoose.connect(process.env.DB_URL, {
+    useMongoClient: true,
+});
 
 
 passport.use(new LocalStrategy(User.authenticate()));
