@@ -1,0 +1,30 @@
+td {
+	/*border-right: 4px solid black;*/
+	padding: 10px 0 10px 0;
+}
+
+tr:nth-child(even) {
+	border-top: 1px dotted black;
+}
+
+tr:nth-child(odd) td:first-child{
+	font-size: 20px;
+	font-weight: 700;
+}
+
+tr:nth-child(odd) {
+	border-top: 1px solid black;
+}
+
+th {
+	padding: 0 30px 0 30px;
+	font-size: 25px;
+}
+
+#top{
+	border-top: none;
+}
+
+.person {
+	border: 3px solid red;
+}
