@@ -154,6 +154,11 @@ app.get("/sra", function(req, res){
     res.render("sra");
 });
 
+//ROUTE - GET OFFICEHOURS - Displays the office hours page
+app.get("/officehours", function(req, res){
+    res.render("officehours");
+}); 
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
