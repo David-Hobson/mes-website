@@ -37,7 +37,9 @@ app.use(function(req, res, next){
 app.set("view engine", "ejs");
 
 //Mongodb connection
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds151382.mlab.com:51382/mac_eng_society`);
+mongoose.connect(process.env.DB_URL, {
+    useMongoClient: true,
+});
 
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -150,6 +152,11 @@ app.get("/governingdocs", function(req, res){
 //ROUTE - GET SRA - Displays the SRA engineering page
 app.get("/sra", function(req, res){
     res.render("sra");
+});
+
+//ROUTE - GET APPLICATIONS - Displays the applicaitons page
+app.get("/applications", function(req, res){
+    res.render("applications");
 });
 
 //ROUTE - GET COUNCIL - Displays the council page
