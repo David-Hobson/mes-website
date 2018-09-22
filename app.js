@@ -154,6 +154,11 @@ app.get("/sra", function(req, res){
     res.render("sra");
 });
 
+//ROUTE - GET APPLICATIONS - Displays the applicaitons page
+app.get("/applications", function(req, res){
+    res.render("applications");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
