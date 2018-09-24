@@ -159,6 +159,11 @@ app.get("/officehours", function(req, res){
     res.render("officehours");
 }); 
 
+//ROUTE - GET APPLICATIONS - Displays the applicaitons page
+app.get("/applications", function(req, res){
+    res.render("applications");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
