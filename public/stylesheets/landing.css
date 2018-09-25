@@ -57,3 +57,10 @@
 	padding: 50px 0 50px 0;
 }
 
+.mec-info {
+	height: 500px;
+	background: url("https://mec.macengsociety.ca/assets/images/MEC-Torch.png");
+	background-repeat: no-repeat;
+	background-position: -20% 25%;
+}
+
