@@ -164,6 +164,11 @@ app.get("/applications", function(req, res){
     res.render("applications");
 });
 
+//ROUTE - GET INVOLVED - Displays the getting involved page
+app.get("/involved", function(req, res){
+    res.render("involved");
+});
+
 //ROUTE - GET COUNCIL - Displays the council page
 app.get("/council", function(req, res){
 
