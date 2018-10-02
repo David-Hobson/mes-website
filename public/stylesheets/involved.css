@@ -1,0 +1,14 @@
+.involved-title {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+	url("https://scontent-yyz1-1.xx.fbcdn.net/v/t31.0-8/21125581_10155632989233134_5495803665315970477_o.jpg?_nc_cat=107&oh=618b0ba9e0b5dc916ae1dd260b616b6b&oe=5C27C21D");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0% 10%;
+}
+
+
+.row-highlight{
+	background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.35));
+}
+
+
