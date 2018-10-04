@@ -19,111 +19,32 @@
             <p>If you have any questions, comments or concerns related to the MES Finances, feel free to send an email to <a href="mailto:vp.finance@macengsociety.ca">vp.finance@macengsociety.ca</a>.</p>
             <div class="accordion" id="accordionExample">
 
+              <% finances.forEach(function(finance){ %>
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      2017 - 2018 Info
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= finance._id %>" aria-expanded="true" aria-controls="<= finance._id %>">
+                      <h5><%= finance.year %> Info</h5>
                     </button>
                   </h5>
                 </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="<%= finance._id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body display-flex">
                     <ul>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2017+-+2018/Council-Approved-Budget-2017-2018.xlsx">MES Budget 2017-2018</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2017+-+2018/MES-2017-DRAFT-Statements.pdf">2017-04-30 McMaster Engineering Society Review Engagement</a></li>
+                      <% finance.files.forEach(function(file){ %>
+                        <li><a target="_blank" href="<%= file[1] %>"><%= file[0] %></a></li>
+                      <% }) %>
                     </ul>
                   </div>
                 </div>
               </div>
+              <% }) %>
 
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                      2016 - 2017 Info
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <ul>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2016+-+2017+/2016-04-30-McMaster-Engineering-Society-REV-FS.pdf">2016-04-30 McMaster Engineering Society Review Engagement</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2016+-+2017+/Budget-2016-2017-1.xlsx">MES Budget 2016-17</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2016+-+2017+/MES-Budget-2016-17.xlsx">MES Budget 2016-2017 Jan. 27th Update</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                      2015 - 2016 Info
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <ul>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/MES-budget-web_15-16.xlsx">MES Budget 2015-16</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/MES_budget_Fall2015-16.xlsx">MES Budget 2015-16 – as of Dec. 31, 2015</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/MES-budget-current.pdf">MES Budget – Feb. 11, 2016</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/MES-budget-current+(1).pdf">MES Budget – Feb. 25, 2016</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/MES-budget-current1.pdf">MES Budget – Mar. 10th, 2016</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/Closing-Budget-2015-2016.pdf1.xlsx">Closing Budget 2015-16</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/Town-Hall-1.pdf">Town Hall 1 Minutes</a></li>
-                        <li><a href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2015+-+2016/Town-Hall-2.pdf">Town Hall 2 Minutes</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="card">
-                <div class="card-header" id="headingFour">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                      2014 - 2015 Info
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <ul>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2014+-+2015/MES-2014-2015-Budget.pdf">MES Budget Proposal 2014-15</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2014+-+2015/MES-Budget-vs-Actuals-May-1st-Sept-30th.pdf
-">MES Budget vs. Actuals 2013-14</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2014+-+2015/VP-Finance-Accountability-Presentation-1.pptx">VP Finance Accountability 2014-15 (SAGM 1)</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header" id="headingFive">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                      2013 - 2014 Info
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <ul>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2013+-+2014/MES-2013-2014-Budget.pdf">MES Budget Proposal 2013-14</a></li>
-                        <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/2013+-+2014/MES-2013-2014-Financial-Statement.pdf">MES P&L Statement 2013-14</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
         </div>
         <div class="col-xl-6 text-center">
-            <img src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/finances-infographic.jpg
-">
-        </div>  
+            <img src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/finances-infographic.jpg">
+        </div>
     </div>
 
     <div class="row misc-docs p-5">

@@ -14,6 +14,7 @@ var Post = require("./models/post");
 var Team = require("./models/team");
 var Council = require("./models/council");
 var User = require("./models/user");
+var Finance = require("./models/finance");
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -141,7 +142,14 @@ app.get("/contact", function(req, res){
 
 //ROUTE - GET CONTACT - Displays the finances page
 app.get("/finances", function(req, res){
-    res.render("finances");
+    Finance.find().sort({year: -1}).exec(function(err, allFinances){
+        if(err){
+            res.redirect("back");
+        }else{
+            res.render("finances", {finances: allFinances});
+        }
+    });
+    
 });
 
 //ROUTE - GET GOVERNINGDOCS - Displays the governing documents page
