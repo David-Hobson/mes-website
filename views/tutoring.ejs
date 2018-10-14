@@ -1,0 +1,98 @@
+<% include ./partials/header %>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/tutoring.css">
+
+<div class="container-fluid traditions-container">
+    <div class="row text-white text-center title-card p-5">
+    	<div class="col-12">
+            <h1 class="title">TUTORING</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row about p-5">
+        <div class="col-6">
+            <h1>About</h1>
+            <hr class="hr-primary">
+            <p>The MES is currently in between systems for its peer tutoring network. In the meantime, we have a temporary solution to help to subsidize the costs of tutoring sessions for our members. If you have any questions about the MES's peer tutoring network, you can contact <a href="mailto:saap@macengsociety.ca">saap@macengsociety.ca</a> for help.</p>
+        </div>
+        <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1494707924465-e1426acb48cb?ixlib=rb-0.3.5&s=06a3576d1ba3e5a1246005e8cc79798b&auto=format&fit=crop&w=1350&q=80">
+        </div>
+    </div>
+
+    <div class="row tutor-info p-5">
+        <div class="col-6">
+            <h1>Need a tutoring session?</h1>
+            <hr class="hr-primary">
+            <ol>
+                <li>Pick a tutor from the list available by clicking "tutor listing". MES tutors are pre-screened to ensure they have received at least a grade of 10 in the course which they are tutoring.</li>
+                <li>Reach out the tutor, they don't bite! Sometimes tutors can be busy, and may miss an email or two, so don't be afraid to follow up if you have been waiting for a response for a while.</li>
+                <li>Organize the tutoring session with the tutor of choice.  Most tutors charge $15-$20 per session.</li>
+                <li>During your tutoring session, fill out this form with your tutor and drop it in the VP Academic mailbox.  In filling out this <a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/tutoring/MES+Tutoring+Service+Subsidy+Form.pdf">form</a>, you can be compensated for $5 per hour long session, for up to ten sessions per semester. Note that the tutor must be one affiliated with the MES, if you book a session with someone else, it will not quaify you for the $5 subsidy.</li>
+            </ol>
+        </div>
+        <div class="col-6">
+            <h1>Want to become a tutor?</h1>
+            <hr class="hr-primary">
+            <ol>
+                <li>In order to be an MES tutor, you must have completed the course you wish to tutor, and you must have obtained at least a 10 average in that course.</li>
+                <li>Once you have completed the course, email <a href="mailto:saap@macengsociety.ca">saap@macengsociety.ca</a> with your macID, student number and the courses you wish to be registered to tutor with the MES for.</li>
+                <li>The academic resource coordinators will confirm your completion of the courses mentioned, and that you obtained at least a 10 in said courses.</li>
+                <li>You will be added as an MES tutor, and can start helping out your fellow students.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row tutor-list p-5">
+        <div class="col-12">
+            <h1 class="text-center">Find a Tutor</h1>
+            <div class="col-xl-12 text-center search-box p-2">
+                <input id="search" type="text" name="" autocomplete="off" placeholder="Search...">
+                <i class="fas fa-search search-logo"></i>
+            </div>
+            <table class="mt-2">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Courses</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <% tutors.forEach(function(tutor){ %>
+                    <tr class="tutor" tags="<%= tutor.name + ' ' + tutor.email + ' ' + tutor.courses.join(', ') %>">
+                        <td><%= tutor.name %></td>
+                        <td><a href="mailto:<%= tutor.email %>"><%= tutor.email %></a></td>
+                        <td><%= tutor.courses.join(", ") %></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<% include ./partials/footer %>
+
+<script type="text/javascript">
+    let searching = $("#search");
+    searching.keyup(function(){
+        $("html").animate({ scrollTop: $("#search").offset().top - 65}, 0);
+        let tutors = $(".tutor");
+        tutors.each(function(){
+            if(this.getAttribute("tags").toLowerCase().includes(searching[0].value.trim().toLowerCase())){
+                this.classList.remove("non-search");
+            }else {
+                this.classList.add("non-search");
+            }
+        });
+    });
+
+    $("#search").click(function () {
+        $("html").animate({ scrollTop: $("#search").offset().top - 65}, 300);
+        return true;
+    });
+</script>
