@@ -2,7 +2,7 @@ ol{
 	padding-left: 15px;
 }
 
-div img{
+.tutor-img{
 	width: 100%;
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
