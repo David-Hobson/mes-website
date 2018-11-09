@@ -5,7 +5,7 @@
 
 <div class="container-fluid traditions-container">
     <div class="row text-white text-center title-card p-5">
-    	<div class="col-12">
+        <div class="col-12">
             <h1 class="title">FINANCES</h1>
             <hr>
         </div>
@@ -15,32 +15,37 @@
         <div class="col-xl-6">
             <h1>Your Money</h1>
             <hr class="hr-primary">
-            <p>Take a look at how student funds have been allocated for the current year as well as past years’ finances!</p>
-            <p>If you have any questions, comments or concerns related to the MES Finances, feel free to send an email to <a href="mailto:vp.finance@macengsociety.ca">vp.finance@macengsociety.ca</a>.</p>
+            <p>Take a look at how student funds have been allocated for the current year as well as past years’
+                finances!</p>
+            <p>If you have any questions, comments or concerns related to the MES Finances, feel free to send an email
+                to <a href="mailto:vp.finance@macengsociety.ca">vp.finance@macengsociety.ca</a>.</p>
             <div class="accordion" id="accordionExample">
 
-              <% finances.forEach(function(finance){ %>
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= finance._id %>" aria-expanded="true" aria-controls="<= finance._id %>">
-                      <h5><%= finance.year %> Info</h5>
-                    </button>
-                  </h5>
-                </div>
-                <div id="<%= finance._id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body display-flex">
-                    <ul>
-                      <% finance.files.forEach(function(file){ %>
-                        <li><a target="_blank" href="<%= file[1] %>"><%= file[0] %></a></li>
-                      <% }) %>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <% }) %>
+                <% finances.forEach(function(finance){ %>
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#<%= finance._id %>" aria-expanded="true"
+                                        aria-controls="<= finance._id %>">
+                                    <h5><%= finance.year %> Info</h5>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="<%= finance._id %>" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordionExample">
+                            <div class="card-body display-flex">
+                                <ul>
+                                    <% finance.files.forEach(function(file){ %>
+                                        <li><a target="_blank" href="<%= file[1] %>"><%= file[0] %></a></li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
 
-          </div>
+            </div>
         </div>
         <div class="col-xl-6 text-center">
             <img src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/finances-infographic.jpg">
@@ -53,27 +58,54 @@
             <hr class="hr-primary">
             <p>These guides will provide you with everything you need to know to get reimbursed by the MES!</p>
             <ul>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Department_Clubs_Funding_Guide.pdf">Department Clubs</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Groups__Teams_Funding_Guide.pdf">Groups & Teams</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Conference_Funding_Guide1.pdf">Conference & Competitions</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Special_Projects_Funding_Guide1.pdf">Special Projects</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES-Intramural-Funding-Guide.pdf">Intramurals</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Department_Clubs_Funding_Guide.pdf">Department
+                        Clubs</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Groups__Teams_Funding_Guide.pdf">Groups
+                        & Teams</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Conference_Funding_Guide1.pdf">Conference
+                        & Competitions</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES_Special_Projects_Funding_Guide1.pdf">Special
+                        Projects</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/funding-guides/MES-Intramural-Funding-Guide.pdf">Intramurals</a>
+                </li>
             </ul>
         </div>
 
         <div class="col-6 pr-5">
             <h1>Appendices</h1>
             <hr class="hr-primary">
-            <p>The following may all be found as appendices in the <a target="_blank" href="#">MES Policy Manual</a>.</p>
+            <p>The following may all be found as appendices in the <a target="_blank" href="#">MES Policy Manual</a>.
+            </p>
             <ul>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_H-Expense_Report.pdf">Appendix H: Expense Report</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Apendix-P-Camera-Rental-Form.pdf">Appendix P: Camera Rental Application</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_R-Sponsorship_Checklist.pdf">Appendix R: Groups & Teams Sponsorship Checklist</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_T-Interdepartmental_Transfer_of_Funds.pdf">Appendix T: Interdepartmental Transfer of Funds</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_U-MES_SAGM_Department_Funding.pdf">Appendix U: SAGM Department Funding</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_V-MES_Conference_Application.pdf">Appendix V: Conference & Competition Funding Application</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_W-MES_Special_Projects_Application.pdf">Appendix W: Special Projects Application</a></li>
-                <li><a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Photography-Contract.pdf">Appendix Y: Photography Contract</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_H-Expense_Report.pdf">Appendix
+                        H: Expense Report</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Apendix-P-Camera-Rental-Form.pdf">Appendix
+                        P: Camera Rental Application</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_R-Sponsorship_Checklist.pdf">Appendix
+                        R: Groups & Teams Sponsorship Checklist</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_T-Interdepartmental_Transfer_of_Funds.pdf">Appendix
+                        T: Interdepartmental Transfer of Funds</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_U-MES_SAGM_Department_Funding.pdf">Appendix
+                        U: SAGM Department Funding</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_V-MES_Conference_Application.pdf">Appendix
+                        V: Conference & Competition Funding Application</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Appendix_W-MES_Special_Projects_Application.pdf">Appendix
+                        W: Special Projects Application</a></li>
+                <li><a target="_blank"
+                       href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/finances/appendices/Photography-Contract.pdf">Appendix
+                        Y: Photography Contract</a></li>
             </ul>
         </div>
     </div>
