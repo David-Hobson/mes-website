@@ -1,0 +1,60 @@
+<% include ./partials/header %>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/minutes.css">
+
+<div class="container-fluid traditions-container">
+    <div class="row text-white text-center title-card p-5">
+        <div class="col-12">
+            <h1 class="title">MINUTES & AGENDAS</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row card-info p-5">
+        <div class="col-12">
+            <p>The minutes and agendas of every MES meeting are archived below. If you’re wondering what you missed during the meeting discussions this is where you can catch up on the latest developments. All agendas and minutes for the current year are available to view on the website; previous years’ documents are stored on the MES’s Google Drive. If you’re trying to get involved with the MES this is a great place to start!</p>
+        </div>
+    </div>
+
+    <div class="row card-info pb-5 pr-5 pl-5">
+        <div class="col-6">
+            <% minutes.forEach(function(minute){ %>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#<%= minute._id %>" aria-expanded="true"
+                                    aria-controls="<= minute._id %>">
+                                <h5><%= minute.section %></h5>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="<%= minute._id %>" class="collapse" aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body display-flex">
+                            <table>
+                                <% minute.documents.forEach(function(doc){ %>
+                                    <tr>
+                                        <td><%= doc[0] %></td>
+                                        <td><%= new Date(doc[1]).toDateString() %></td>
+                                        <td><a href="<%= doc[2] %>">Agenda</a></td>
+                                        <td><a href="<%= doc[3] %>">Minutes</a></td>
+                                    </tr>
+                                <% }); %>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+        <div class="col-6">
+            <h3>Motion Submission</h3>
+            <hr class="hr-primary">
+            <p>Please email the administrator at <a href="mailto:administrator@macengsociety.ca">administrator@macengsociety.ca</a> with any motions you would like to be discussed at MES Council Meetings or SAGM. If you are unsure of the formatting and procedures when it comes to writing motions, feel free to review the template below. After submission, be sure to check the email provided regularly as the MES Administrator will be following up with you later on to acquire any additional information that is needed (presentations, clarifications etc).</p>
+        </div>
+    </div>
+
+</div>
+
+<% include ./partials/footer %>

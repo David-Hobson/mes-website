@@ -16,6 +16,7 @@ var Council = require("./models/council");
 var User = require("./models/user");
 var Finance = require("./models/finance");
 var Tutor = require("./models/tutor");
+var Minute = require("./models/minute");
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -139,6 +140,17 @@ app.get("/hatchbooking", function(req, res){
 //ROUTE - GET CONTACT - Displays the contacts page
 app.get("/contact", function(req, res){
     res.render("contact");
+});
+
+app.get("/minutes", function(req, res){
+    Minute.find().sort({section: -1}).exec(function(err, allMinutes){
+        if(err){
+            res.redirect("back");
+        }else{
+            res.render("minutes", {minutes: allMinutes});
+        }
+    });
+
 });
 
 app.get("/tutoring", function(req, res){
