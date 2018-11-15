@@ -17,6 +17,7 @@ var User = require("./models/user");
 var Finance = require("./models/finance");
 var Tutor = require("./models/tutor");
 var Minute = require("./models/minute");
+var Conference = require("./models/conference");
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -152,6 +153,16 @@ app.get("/minutes", function(req, res){
     });
 
 });
+
+app.get("/conferences", function(req, res){
+    Conference.find().sort({name: 1}).exec(function(err, allConferences){
+        if(err){
+            res.redirect("back");
+        }else{
+            res.render("conferences", {conferences: allConferences});
+        }
+    });
+})
 
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){
