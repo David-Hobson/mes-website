@@ -5,7 +5,7 @@ var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var passport = require("passport")
+var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var expressSession = require("express-session");
@@ -57,7 +57,7 @@ aws.config.update({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID
 });
 
-const S3_BUCKET = process.env.S3_BUCKET
+const S3_BUCKET = process.env.S3_BUCKET;
 
 //=== ROUTES ===
 
@@ -142,6 +142,7 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
+//ROUTE - GET MINUTES - Displays the minutes page
 app.get("/minutes", function(req, res){
     Minute.find().sort({section: -1}).exec(function(err, allMinutes){
         if(err){
@@ -153,6 +154,17 @@ app.get("/minutes", function(req, res){
 
 });
 
+app.get("/minutes/new", function(req, res){
+    Minute.find().sort({section: -1}).exec(function(err, allMinutes){
+        if(err){
+            res.redirect("back");
+        }else{
+            res.render("newminutes", {minutes: allMinutes});
+        }
+    });
+});
+
+//ROUTE - GET TUTORING - Displays the tutoring page
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){
         if(err){
@@ -308,7 +320,7 @@ app.delete("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
 
             s3.deleteObject(s3Params, (err, data) => {
                 if(err){
-                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$");
                     console.log(err);
                     return res.end();
                 }
@@ -345,7 +357,7 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
         id: req.user._id,
         name: req.user.name,
         position: req.user.position
-    }
+    };
 
     //Create the edited post object
     var editedPost = {
@@ -369,7 +381,7 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
 
         s3.putObject(s3Params, (err, data) => {
             if(err){
-                console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                console.log("$@$@$@$@$@ ERROR @$@$@$@$@$");
                 console.log(err);
                 return res.end();
             }
@@ -404,7 +416,7 @@ app.post("/posts", isLoggedIn, function(req, res){
         id: req.user._id,
         name: req.user.name,
         position: req.user.position
-    }
+    };
 
     //Create the new post object
     var newPost = {
@@ -433,7 +445,7 @@ app.post("/posts", isLoggedIn, function(req, res){
 
             s3.putObject(s3Params, (err, data) => {
                 if(err){
-                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$")
+                    console.log("$@$@$@$@$@ ERROR @$@$@$@$@$");
                     console.log(err);
                     return res.end();
                 }
