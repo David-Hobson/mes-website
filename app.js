@@ -154,6 +154,7 @@ app.get("/minutes", function(req, res){
 
 });
 
+//ROUTE - GET MINUTES/NEW - Displays the new minutes page for creating a new minutes entry
 app.get("/minutes/new", function(req, res){
     Minute.find().sort({section: -1}).exec(function(err, allMinutes){
         if(err){
@@ -162,6 +163,53 @@ app.get("/minutes/new", function(req, res){
             res.render("newminutes", {minutes: allMinutes});
         }
     });
+});
+
+app.post("/minutes", function(req, res){
+    let newMinute = {
+        section: req.body.section,
+        documents: [req.body.type,
+            req.body.date,
+            req.files.agenda.name.replace(/\s/g, ""),
+            req.files.minutes.name.replace(/\s/g, "")
+        ]
+    };
+
+    const file1s3 = new aws.S3();
+    const file1s3Params = {
+        Bucket: S3_BUCKET + "/documents/minutes",
+        Key: newMinute.documents[2],
+        Expires: 60,
+        ACL: 'public-read',
+        Body: req.files.agenda.data
+    };
+
+    file1s3.putObject(file1s3Params, (err, data) => {
+        if(err){
+            console.log("$@$@$@$@$@ ERROR @$@$@$@$@$");
+            console.log(err);
+            return res.end();
+        }
+    });
+
+    const file2s3 = new aws.S3();
+    const file2s3Params = {
+        Bucket: S3_BUCKET + "/documents/minutes",
+        Key: newMinute.documents[2],
+        Expires: 60,
+        ACL: 'public-read',
+        Body: req.files.agenda.data
+    };
+
+    file2s3.putObject(file2s3Params, (err, data) => {
+        if(err){
+            console.log("$@$@$@$@$@ ERROR @$@$@$@$@$");
+            console.log(err);
+            return res.end();
+        }
+    });
+
+    res.redirect("minutes");
 });
 
 //ROUTE - GET TUTORING - Displays the tutoring page
