@@ -1,0 +1,17 @@
+.row img {
+    width: 60%;
+    box-shadow: 5px 10px 20px #888888;
+    height: 500px;
+}
+
+/*.melissa-section {*/
+    /*background-color: rgb(247, 247, 247);*/
+/*}*/
+
+.candidate-info {
+    background-color: rgb(247, 247, 247);
+}
+
+.candidate-title {
+    font-size: 60px;
+}

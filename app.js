@@ -142,15 +142,25 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
-app.get("/minutes", function(req, res){
-    Minute.find().sort({section: -1}).exec(function(err, allMinutes){
-        if(err){
-            res.redirect("back");
-        }else{
-            res.render("minutes", {minutes: allMinutes});
-        }
-    });
 
+//ROUTE - GET PRESIDENTIAL-ELECTION - Displays the presidential election page
+app.get("/presidential-election", function(req, res){
+   res.render("president-election");
+});
+
+// app.get("/minutes", function(req, res){
+//     Minute.find().sort({section: -1}).exec(function(err, allMinutes){
+//         if(err){
+//             res.redirect("back");
+//         }else{
+//             res.render("minutes", {minutes: allMinutes});
+//         }
+//     });
+//
+// });
+
+app.get("/tryouts2019", function(req, res){
+   res.render("tryouts2019")
 });
 
 app.get("/tutoring", function(req, res){
