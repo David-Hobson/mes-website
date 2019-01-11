@@ -142,6 +142,12 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
+
+//ROUTE - GET PRESIDENTIAL-ELECTION - Displays the presidential election page
+app.get("/presidential-election", function(req, res){
+   res.render("president-election");
+});
+
 // app.get("/minutes", function(req, res){
 //     Minute.find().sort({section: -1}).exec(function(err, allMinutes){
 //         if(err){

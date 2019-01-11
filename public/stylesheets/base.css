@@ -81,6 +81,13 @@ body{
 	margin-left: 0;
 }
 
+.hr-primary-right{
+	background-color: red;
+	width: 50%;
+	margin-left: 50%;
+}
+
+
 .hr-primary-mid{
 	background-color: red;
 	width: 50%;
