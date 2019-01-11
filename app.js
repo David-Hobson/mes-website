@@ -142,6 +142,7 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
+
 //ROUTE - GET PRESIDENTIAL-ELECTION - Displays the presidential election page
 app.get("/presidential-election", function(req, res){
    res.render("president-election");
@@ -157,6 +158,10 @@ app.get("/presidential-election", function(req, res){
 //     });
 //
 // });
+
+app.get("/tryouts2019", function(req, res){
+   res.render("tryouts2019")
+});
 
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){

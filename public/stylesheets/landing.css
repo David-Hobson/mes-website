@@ -35,7 +35,7 @@
 }
 
 .card-img{
-	height: 300px;
+	height: 400px;
 	width: 100%;
 	opacity: 0.35;
 	transition: linear 0.2s;
@@ -63,4 +63,11 @@
 	background-repeat: no-repeat;
 	background-position: -20% 25%;
 }
+
+.tryout-info {
+	height: 500px;
+    background-size: cover;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 1) 70%), url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/danger-redsuits.jpg") no-repeat -180px -150px;
+}
+
 
