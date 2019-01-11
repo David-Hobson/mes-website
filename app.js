@@ -142,16 +142,21 @@ app.get("/contact", function(req, res){
     res.render("contact");
 });
 
-app.get("/minutes", function(req, res){
-    Minute.find().sort({section: -1}).exec(function(err, allMinutes){
-        if(err){
-            res.redirect("back");
-        }else{
-            res.render("minutes", {minutes: allMinutes});
-        }
-    });
-
+//ROUTE - GET PRESIDENTIAL-ELECTION - Displays the presidential election page
+app.get("/presidential-election", function(req, res){
+   res.render("president-election");
 });
+
+// app.get("/minutes", function(req, res){
+//     Minute.find().sort({section: -1}).exec(function(err, allMinutes){
+//         if(err){
+//             res.redirect("back");
+//         }else{
+//             res.render("minutes", {minutes: allMinutes});
+//         }
+//     });
+//
+// });
 
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){
