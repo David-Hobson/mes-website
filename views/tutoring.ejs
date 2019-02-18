@@ -15,7 +15,9 @@
         <div class="col-6">
             <h1>About</h1>
             <hr class="hr-primary">
-            <p>The MES is currently in between systems for its peer tutoring network. In the meantime, we have a temporary solution to help to subsidize the costs of tutoring sessions for our members. If you have any questions about the MES's peer tutoring network, you can contact <a href="mailto:saap@macengsociety.ca">saap@macengsociety.ca</a> for help.</p>
+            <p>The MES works with the McMaster Student Success Centre and TutorOcean to implement its tutoring network.  Instructions can be found below on how to find a tutor for a course you need help in, or to sign up to be a tutor yourself. </p>
+            <p>MES Tutors also help out with academically focused events such as the MES cookies and cram sessions where MES tutors can reach out to new potential clients while helping members of the community who need help.</p>
+            <p>If you have any questions you can reach out to <a href="mailto:saap@macengsociety.ca">saap@macengsociety.ca</a> for more information.</p>
         </div>
         <div class="col-6">
             <img class="tutor-img" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/tutoring/tutor-img.jpg">
@@ -27,72 +29,29 @@
             <h1>Need a tutoring session?</h1>
             <hr class="hr-primary">
             <ol>
-                <li>Pick a tutor from the list available by clicking "tutor listing". MES tutors are pre-screened to ensure they have received at least a grade of 10 in the course which they are tutoring.</li>
-                <li>Reach out the tutor, they don't bite! Sometimes tutors can be busy, and may miss an email or two, so don't be afraid to follow up if you have been waiting for a response for a while.</li>
-                <li>Organize the tutoring session with the tutor of choice.  Most tutors charge $15-$20 per session.</li>
-                <li>During your tutoring session, fill out this form with your tutor and drop it in the VP Academic mailbox.  In filling out this <a target="_blank" href="https://s3.us-east-2.amazonaws.com/mes-website-assets/documents/tutoring/MES+Tutoring+Service+Subsidy+Form.pdf">form</a>, you can be compensated for $5 per hour long session, for up to ten sessions per semester. Note that the tutor must be one affiliated with the MES, if you book a session with someone else, it will not quaify you for the $5 subsidy.</li>
+                <li>Sign up for a TutorOcean account to learn at <a target="_blank" href="https://mcmaster.tutorocean.com/">mcmaster.tutorocean.com</a> using your McMaster email.</li>
+                <li>Your credit card is required to facilitate paying for tutoring sessions.  It will not be charged for any other kind of expense.</li>
+                <li>Select a tutor from the list which is available, or you can search for a tutor or a subject at any time by using the search bar at the top of the screen.</li>
+                <li>Through the MES, you are entitled to seven $15 coupons per semester to subsidize the cost of your tutoring session to only $3.  These are available by clicking on sessions, then payment methods at the top of the screen.</li>
+                <li>Copy and paste your coupon code into the coupon box when paying for a session to access the discount for the session.</li>
+                <li>Meet up with your tutor in person or learn through the TutorOcean online platform.</li>
             </ol>
         </div>
         <div class="col-6">
             <h1>Want to become a tutor?</h1>
             <hr class="hr-primary">
             <ol>
-                <li>In order to be an MES tutor, you must have completed the course you wish to tutor, and you must have obtained at least a 10 average in that course.</li>
-                <li>Once you have completed the course, email <a href="mailto:saap@macengsociety.ca">saap@macengsociety.ca</a> with your macID, student number and the courses you wish to be registered to tutor with the MES for.</li>
-                <li>The academic resource coordinators will confirm your completion of the courses mentioned, and that you obtained at least a 10 in said courses.</li>
-                <li>You will be added as an MES tutor, and can start helping out your fellow students.</li>
+                <li>Sign up for a TutorOcean account to teach at mcmaster.tutorocean.com using your McMaster email.  If you previously signed up to learn, you can follow the rest of the steps in the same way.</li>
+                <li>Your credit card is required to facilitate getting paid for the sessions you teach.  You can also use your account to request tutoring sessions for your own help as well.</li>
+                <li>Click on your profile picture in the top right corner of your screen.  From the drop down menu that comes out, click “Become a Tutor”.</li>
+                <li>Follow the steps on the left hand side of the screen to add some information to your account to help students find you as a tutor.</li>
+                <li>Click “Send Application” on the left hand side of the screen.</li>
+                <li>You will also be required to email your transcript to the Student Success Centre (SSC) to confirm that you have at least a 10 in the courses that you are looking to tutor in.</li>
+                <li>You will now be registered with the SSC as a tutor, you will receive notifications if tutees are looking to select you as their tutor.  Coming out to events as a tutor is a great way to improve your likelihood of being selected as a tutor.</li>
             </ol>
-        </div>
-    </div>
-
-    <div class="row tutor-list p-5">
-        <div class="col-12">
-            <h1 class="text-center">Find a Tutor</h1>
-            <div class="col-xl-12 text-center search-box p-2">
-                <input id="search" type="text" name="" autocomplete="off" placeholder="Search...">
-                <i class="fas fa-search search-logo"></i>
-            </div>
-            <table class="mt-2">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Courses</td>
-                    </tr>
-                </thead>
-                <tbody>
-                <% tutors.forEach(function(tutor){ %>
-                    <tr class="tutor" tags="<%= tutor.name + ' ' + tutor.email + ' ' + tutor.courses.join(', ') %>">
-                        <td><%= tutor.name %></td>
-                        <td><a href="mailto:<%= tutor.email %>"><%= tutor.email %></a></td>
-                        <td><%= tutor.courses.join(", ") %></td>
-                    </tr>
-                <% }); %>
-                </tbody>
-            </table>
         </div>
     </div>
 
 </div>
 
 <% include ./partials/footer %>
-
-<script type="text/javascript">
-    let searching = $("#search");
-    searching.keyup(function(){
-        $("html").animate({ scrollTop: $("#search").offset().top - 65}, 0);
-        let tutors = $(".tutor");
-        tutors.each(function(){
-            if(this.getAttribute("tags").toLowerCase().includes(searching[0].value.trim().toLowerCase())){
-                this.classList.remove("non-search");
-            }else {
-                this.classList.add("non-search");
-            }
-        });
-    });
-
-    $("#search").click(function () {
-        $("html").animate({ scrollTop: $("#search").offset().top - 65}, 300);
-        return true;
-    });
-</script>
