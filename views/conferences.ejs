@@ -12,6 +12,16 @@
     </div>
 
     <div class="row p-5">
+        <div class="col-12">
+            <h2>Interested in attending an engineering conference? </h2>
+            <hr class="hr-primary">
+            <p>Every year we, the McMaster Engineering Society, send delegates to the following conferences. These conferences are hosted by ESSCO (the Engineering Student Societies’ Council of Ontario) or the CFES (the Canadian Federation of Engineering Students), and work to connect students from across the province, or country, that are studying engineering. </p>
+            <p>Our delegations for these conferences are chosen through an application an interview process by the Delegate Selection Committee (composed of the VP External, Public Relations Coordinator(s), Chief Returning Officer, and one other MES member). Selected delegates have an opportunity to receive a 50% reimbursement for the cost of attending a closed conference by finding a way of sharing what they experienced with the McMaster Engineering Community. To find out when applications come out follow the MES on Facebook and sign up for the Conferences Mail Out
+                <a target="_blank" href="http://eepurl.com/cjuX3n">here</a>. </p>
+        </div>
+    </div>
+
+    <div class="row p-5">
         <% conferences.forEach(function(conference){ %>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-3 conference" conferenceid="<%= conference._id %>">
                 <div class="card">
@@ -49,13 +59,40 @@
                 </div>
             </div>
         <% }); %>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pb-3 not-listed text-white">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Conference isn’t on the list?</h3>
+                    <hr class="hr-tertiary">
+                    <p class="card-text">Through the MES we offer an opportunity to get funding to attend conferences called the ‘Open Conference Fund’. You can apply for this funding by submitting an application to the Vice-President External’s mailbox located in the D.W. Lounge (Hatch __). The application requires filling out Appendix V on page 116 of the Policy Manual attached here and all other documentation listed. For questions, email:
+                        <a class="text-white" href="mailto:vp.external@macengsociety.ca">vp.external@macengsociety.ca</a>.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row p-5 con-blogs">
         <div class="col-12">
-            <h1>Conference Blogs</h1>
+            <h1>Conference Posts</h1>
             <hr class="hr-primary">
         </div>
+
+        <% posts.forEach(function(post){ %>
+            <div class="col-lg-4 col-md-6 col-sm-12 per-post">
+                <div class="card">
+                    <img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/posts/<%= post.image %>" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= post.title %></h3>
+                        <hr class="hr-primary">
+                        <p><strong><%= post.author.name %> - <%= post.author.position %></strong></p>
+                        <p class="card-text"><%= post.content.substring(0,100) %>...</p>
+                        <a href="/posts/<%= post._id %>" class="link">Read More...</a>
+                    </div>
+                    <div class="card-footer text-muted"><em><%= post.created.toDateString() %></em></div>
+                </div>
+            </div>
+        <% }); %>
     </div>
 
 </div>
