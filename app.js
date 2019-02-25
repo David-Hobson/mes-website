@@ -159,10 +159,16 @@ app.get("/conferences", function(req, res){
         if(err){
             res.redirect("back");
         }else{
-            res.render("conferences", {conferences: allConferences});
+            Post.find({type: "Conference"}, function (err, conferencePosts) {
+                if(err){
+                    console.log(err);
+                }else {
+                    res.render("conferences", {conferences: allConferences, posts: conferencePosts});
+                }
+            });
         }
     });
-})
+});
 
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){
@@ -414,7 +420,7 @@ app.post("/posts", isLoggedIn, function(req, res){
     var author = {
         id: req.user._id,
         name: req.user.name,
-        position: req.user.position
+        position: req.user.position,
     }
 
     //Create the new post object
@@ -422,6 +428,7 @@ app.post("/posts", isLoggedIn, function(req, res){
         title: req.body.title,
         content: req.body.content,
         author: author,
+        type: req.body.type,
         image: ""
     };
     
