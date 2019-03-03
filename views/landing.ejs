@@ -26,7 +26,7 @@
                     <div class="card-img-overlay">
                         <h3 class="card-title"><%= posts[i].title %></h3>
                         <br>
-                        <p class="card-text"><%= posts[i].content.substring(0,100) %>...</p>
+                        <p class="card-text"><%- posts[i].content.substring(0,100) %>...</p>
                         <p class="card-text"><em><%= posts[i].created.toDateString() %></em></p>
                         <a class="link" href="/posts/<%= posts[i]._id %>">Read More...</a>
                     </div>
