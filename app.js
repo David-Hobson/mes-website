@@ -180,7 +180,7 @@ app.get("/tutoring", function(req, res){
     }); 
 });
 
-app.get("/generalelections", function(req, res){
+app.get("/general-elections", function(req, res){
     ElectionPosition.find({}).populate("candidates").exec(function(err, allPositions){
         if(err){
             console.log(err);
