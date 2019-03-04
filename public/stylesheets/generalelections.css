@@ -6,3 +6,7 @@
 .meet-candidates {
     background-color: rgb(250, 250, 250);
 }
+
+p {
+    white-space: pre-line;
+}
