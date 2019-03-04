@@ -17,6 +17,11 @@ var User = require("./models/user");
 var Finance = require("./models/finance");
 var Tutor = require("./models/tutor");
 var Minute = require("./models/minute");
+var Candidate = require("./models/candidate");
+var ElectionPosition = require("./models/election-position");
+//var seedDB = require("./seeds");
+
+//seedDB();
 
 //Use statements for the express application
 app.use(bodyParser.urlencoded({extended: true}));
@@ -159,10 +164,12 @@ app.get("/presidential-election", function(req, res){
 //
 // });
 
+//ROUTE - GET TRYOUTS2019 - Displays the tryouts page.
 app.get("/tryouts2019", function(req, res){
    res.render("tryouts2019")
 });
 
+//ROUTE - GET TUTORING - Displays the tutoring page.
 app.get("/tutoring", function(req, res){
     Tutor.find().sort({name: 1}).exec(function(err, allTutors){
         if(err){
@@ -173,6 +180,32 @@ app.get("/tutoring", function(req, res){
     }); 
 });
 
+app.get("/general-elections", function(req, res){
+    ElectionPosition.find({}).populate("candidates").exec(function(err, allPositions){
+        if(err){
+            console.log(err);
+            res.redirect("back");
+        }else{
+            res.render("generalelections", {
+                electionCategories: [{
+                    rank: "Vice Presidents",
+                    positions: allPositions.filter(val => val.rank === "VP")
+                },{
+                    rank: "Associate Vice Presidents",
+                    positions: allPositions.filter(val => val.rank === "AVP")
+                },{
+                    rank: "Department Representatives",
+                    positions: allPositions.filter(val => val.rank === "DEP")
+                },{
+                    rank: "Program Representatives",
+                    positions: allPositions.filter(val => val.rank === "PROG")
+                }
+                ]});
+        }
+    });
+
+});
+``
 //ROUTE - GET CONTACT - Displays the finances page
 app.get("/finances", function(req, res){
     Finance.find().sort({year: -1}).exec(function(err, allFinances){
