@@ -1,0 +1,77 @@
+<% include ./partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/generalelections.css">
+
+<div class="container-fluid">
+    <div class="row text-white text-center title-card p-5">
+        <div class="col-12">
+            <h1 class="title">GENERAL ELECTIONS</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row p-5">
+        <div class="col-12">
+            <h1>About</h1>
+            <hr class="hr-primary">
+            <p>The McMaster Engineering Society (MES) is currently hosting the general elections for the 2019-2020 council. The MES council represents all of the undergraduate engineering students at McMaster. On this page you can find all of the candidates and their platforms for the year. Voting will be through McMaster email Saturday March 9th at 8am until Monday March 11th at 12pm.</p>
+        </div>
+    </div>
+
+    <div class="row p-5 meet-candidates">
+        <div class="col-12">
+            <h1 class="text-center">THE CANDIDATES</h1>
+            <% electionCategories.forEach(function(category){ %>
+            <h2 class="pt-5"><%= category.rank %></h2>
+            <hr class="hr-primary">
+
+            <% category.positions.forEach(function(position){ %>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#<%= position._id %>" aria-expanded="false" aria-controls="collapseOne">
+                                <%= position.title %>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="<%= position._id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <% position.candidates.forEach(function(candidate){ %>
+                                        <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#<%= candidate._id %>" role="tab" aria-controls="v-pills-home" aria-selected="false"><%= candidate.name %></a>
+                                        <% });%>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <% position.candidates.forEach(function(candidate){ %>
+                                        <div class="tab-pane fade" id="<%= candidate._id%>" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h3><%= candidate.name %></h3>
+                                                    <p><%= candidate.blurb %></p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <img class="candidate-image" src="https://s3.us-east-2.amazonaws.com/mes-website-assets/images/general-election/<%= candidate.image %>" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% });%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>
