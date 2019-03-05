@@ -368,7 +368,8 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
     var editedPost = {
         title: req.body.title,
         content: req.body.content,
-        author: author
+        type: req.body.type,
+        author: author,
     };
 
     //Checks if the edited post has a new image, keeps the default if not
