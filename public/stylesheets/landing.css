@@ -35,7 +35,7 @@
 }
 
 .card-img{
-	height: 300px;
+	height: 400px;
 	width: 100%;
 	opacity: 0.35;
 	transition: linear 0.2s;
@@ -53,6 +53,8 @@
 	vertical-align: middle;
 }
 
+
+
 .latest-posts {
 	padding: 50px 0 50px 0;
 }
@@ -63,4 +65,20 @@
 	background-repeat: no-repeat;
 	background-position: -20% 25%;
 }
+
+.tryout-info {
+	height: 500px;
+    background-size: cover;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 1) 70%), url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/danger-redsuits.jpg") no-repeat -180px -150px;
+}
+
+.mes-election{
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 80%),
+	url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/vote.jpeg");
+	height: 450px;
+	background-size: contain;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
 
