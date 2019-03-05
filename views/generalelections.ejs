@@ -37,7 +37,9 @@
                     </div>
                     <div id="<%= position._id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
+
                             <div class="row">
+                                <% if(position.candidates.length !== 0) { %>
                                 <div class="col-3">
                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <% position.candidates.forEach(function(candidate){ %>
@@ -62,6 +64,11 @@
                                         <% });%>
                                     </div>
                                 </div>
+                                <% } else {%>
+                                <div class="col-12">
+                                    <p>Currently vacant if you would like to apply please email <a href="mailto:cro@macengsociety.ca">cro@macengsociety.ca</a></p>
+                                </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>
