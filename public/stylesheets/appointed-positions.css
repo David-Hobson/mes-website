@@ -1,0 +1,22 @@
+.position-title {
+    font-size: 20px;
+}
+
+.positions {
+    /*background-color: rgb(252, 252, 252);*/
+    background:linear-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0)),
+    url("https://www.hpacmag.com/wp-content/uploads/sites/32/2017/11/Gerald-Hatch-Centre-atrium-and-interior-788x1024.jpg");
+    background-size: cover;
+}
+
+.card i {
+    margin-right: 15px;
+}
+
+.accordion {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-header:hover {
+    background-color: #e6e6e6;
+}
