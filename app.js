@@ -19,6 +19,7 @@ var Tutor = require("./models/tutor");
 var Minute = require("./models/minute");
 var Candidate = require("./models/candidate");
 var ElectionPosition = require("./models/election-position");
+var AppointedPosition = require("./models/appointed-position");
 //var seedDB = require("./seeds");
 
 //seedDB();
@@ -180,6 +181,7 @@ app.get("/tutoring", function(req, res){
     }); 
 });
 
+//ROUTE - GET GENERAL-ELECTIONS - Displays the general elections page
 app.get("/general-elections", function(req, res){
     ElectionPosition.find({}).populate("candidates").exec(function(err, allPositions){
         if(err){
@@ -205,7 +207,19 @@ app.get("/general-elections", function(req, res){
     });
 
 });
-``
+
+//ROUTE - GET APPOINTED-POSITIONS - Displays the appointed positions page
+app.get("/appointed-positions", function(req, res){
+    AppointedPosition.find().sort({title: 1}).exec(function(err, allAppointedPositions){
+       if(err){
+           console.log(err);
+           res.redirect("back");
+       } else {
+           res.render("appointed-positions", {appointedPositions: allAppointedPositions});
+       }
+    });
+});
+
 //ROUTE - GET CONTACT - Displays the finances page
 app.get("/finances", function(req, res){
     Finance.find().sort({year: -1}).exec(function(err, allFinances){

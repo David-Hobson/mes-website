@@ -1,0 +1,17 @@
+.position-title {
+    font-size: 20px;
+}
+
+.positions {
+    background:linear-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0)),
+    url("https://s3.us-east-2.amazonaws.com/mes-website-assets/images/static/inside-hatch.jpg");
+    background-size: cover;
+}
+
+.card i {
+    margin-right: 15px;
+}
+
+.accordion {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
