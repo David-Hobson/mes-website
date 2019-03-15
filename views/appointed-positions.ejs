@@ -1,0 +1,50 @@
+<% include ./partials/header %>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/appointed-positions.css">
+
+<div class="container-fluid traditions-container">
+    <div class="row text-white text-center title-card p-5">
+        <div class="col-12">
+            <h1 class="title">APPOINTED POSITIONS</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row p-5">
+        <div class="col-12">
+            <h1>About</h1>
+            <hr class="hr-primary">
+            <p>The so called ‘appointed positions’ on the McMaster Engineering Society are a variety of positions that work with the MES Executive throughout the year in order to make everything the MES does happen. There is a wide range of appointed positions and the details of their associated policy can be found in the MES policy manual. However, a quick intro to each of the ones we are hiring right can be found below!</p>
+            <p>Application forms are due on March 22nd at 10pm and can be submitted <a target="_blank" href="https://goo.gl/forms/BD445HX0ycNMEMMG3">here</a>.
+            <p>Interviews for the positions will take place on March 24th, 29th, and 30th. A timeslot can be chosen <a target="_blank" href="https://doodle.com/poll/w42vym7wnydu62mw">here</a>.</p>
+        </div>
+    </div>
+
+    <div class="row p-5 positions d-flex justify-content-center">
+        <div class="col-8">
+            <h1 class="text-center">The Positions</h1>
+            <hr class="hr-primary-mid">
+            <div class="accordion" id="accordionExample">
+                <% appointedPositions.forEach(function(position){ %>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link position-title" type="button" data-toggle="collapse" data-target="#<%= position._id %>" aria-expanded="true" aria-controls="<%= position._id %>">
+                                <i class="<%= position.image %>"></i><%= position.title %>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="<%= position._id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <%= position.description %>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>

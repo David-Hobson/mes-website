@@ -17,7 +17,7 @@ body{
 }
 
 .nav-item:hover{
-	border-bottom: 3px solid red;
+	border-bottom: 3px solid #cc0000;
 }
 
 .navbar-text {
@@ -35,7 +35,7 @@ body{
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-	background-color: red;
+	background-color: #cc0000;
 }
 
 .btn:hover {
@@ -80,20 +80,20 @@ body{
 }
 
 .hr-primary{
-	background-color: red;
+	background-color: #cc0000;
 	width: 50%;
 	margin-left: 0;
 }
 
 .hr-primary-right{
-	background-color: red;
+	background-color: #cc0000;
 	width: 50%;
 	margin-left: 50%;
 }
 
 
 .hr-primary-mid{
-	background-color: red;
+	background-color: #cc0000;
 	width: 50%;
 	margin-right: auto;
 	margin-left: auto;
@@ -114,7 +114,7 @@ body{
 }
 
 a{
-    color: red;
+    color: #cc0000;
 }
 
 a:hover{
@@ -122,7 +122,7 @@ a:hover{
 }
 
 .btn-link {
-	color: red;
+	color: #cc0000;
 }
 
 .btn-link:hover {
@@ -142,6 +142,6 @@ a:hover{
 }
 
 .dropdown-item:active {
-	background-color: red;
+	background-color: #cc0000;
 }
 
