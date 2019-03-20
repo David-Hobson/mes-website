@@ -5,6 +5,7 @@ var postSchema = new mongoose.Schema({
     image: String,
     content: String,
     created: {type: Date, default: Date.now},
+    type: String,
     author: {
     	id: {
     		type: mongoose.Schema.Types.ObjectId,

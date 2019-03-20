@@ -17,6 +17,7 @@ var User = require("./models/user");
 var Finance = require("./models/finance");
 var Tutor = require("./models/tutor");
 var Minute = require("./models/minute");
+var Conference = require("./models/conference");
 var Candidate = require("./models/candidate");
 var ElectionPosition = require("./models/election-position");
 var AppointedPosition = require("./models/appointed-position");
@@ -109,9 +110,9 @@ app.get("/library", function(req, res){
 });
 
 //ROUTE - GET STUDENTSPACE - Displays the student space page
-app.get("/studentspace", function(req, res){
-    res.render("studentspace");
-});
+// app.get("/studentspace", function(req, res){
+//     res.render("studentspace");
+// });
 
 //ROUTE - GET PUBLICATIONS - Displays the publications page
 app.get("/publications", function(req, res){
@@ -168,6 +169,23 @@ app.get("/presidential-election", function(req, res){
 //ROUTE - GET TRYOUTS2019 - Displays the tryouts page.
 app.get("/tryouts2019", function(req, res){
    res.render("tryouts2019")
+});
+
+//ROUTE - GET CONFERENCES - Displays the conferences page.
+app.get("/conferences", function(req, res){
+    Conference.find().sort({name: 1}).exec(function(err, allConferences){
+        if(err){
+            res.redirect("back");
+        }else{
+            Post.find({type: "Conference"}, function (err, conferencePosts) {
+                if(err){
+                    console.log(err);
+                }else {
+                    res.render("conferences", {conferences: allConferences, posts: conferencePosts});
+                }
+            });
+        }
+    });
 });
 
 //ROUTE - GET TUTORING - Displays the tutoring page.
@@ -408,7 +426,8 @@ app.put("/posts/:id", isLoggedIn, checkPostOwnership, function(req, res){
     var editedPost = {
         title: req.body.title,
         content: req.body.content,
-        author: author
+        type: req.body.type,
+        author: author,
     };
 
     //Checks if the edited post has a new image, keeps the default if not
@@ -460,7 +479,7 @@ app.post("/posts", isLoggedIn, function(req, res){
     var author = {
         id: req.user._id,
         name: req.user.name,
-        position: req.user.position
+        position: req.user.position,
     }
 
     //Create the new post object
@@ -468,6 +487,7 @@ app.post("/posts", isLoggedIn, function(req, res){
         title: req.body.title,
         content: req.body.content,
         author: author,
+        type: req.body.type,
         image: ""
     };
     
