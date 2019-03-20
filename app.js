@@ -109,9 +109,9 @@ app.get("/library", function(req, res){
 });
 
 //ROUTE - GET STUDENTSPACE - Displays the student space page
-app.get("/studentspace", function(req, res){
-    res.render("studentspace");
-});
+// app.get("/studentspace", function(req, res){
+//     res.render("studentspace");
+// });
 
 //ROUTE - GET PUBLICATIONS - Displays the publications page
 app.get("/publications", function(req, res){
