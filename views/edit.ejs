@@ -20,6 +20,13 @@
                             <input type="text" class="form-control" name="position" value="<%= currentUser.position %>" readonly>
                         </div>
                         <div class="form-group">
+                            <select class="form-control" name="type" required>
+                                <option><%= post.type %></option>
+                                <option>General</option>
+                                <option>Conference</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <textarea class="form-control" rows="5" name="content" required><%= post.content %></textarea>
                         </div>
                         <div class="form-group">

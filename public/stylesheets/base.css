@@ -105,6 +105,12 @@ body{
     margin-left: 25%;
 }
 
+.hr-tertiary {
+	background: white;
+	width: 50%;
+	margin-left: 0;
+}
+
 .nav-container{
 	height: 100%;
 }
